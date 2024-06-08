@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Record the feeling today</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        font-family: "Arial", sans-serif;
+      }
+      .container {
+        text-align: center;
+      }
+      input[type="text"] {
+        width: 80%;
+        padding: 8px;
+        margin-top: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+      }
+      button {
+        width: 100px;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {background-color: #45a049;}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-xl font-bold mb-4">
+        당신의 오늘 하루를 감정으로 표현하자면 어떤 감정인가요?
+      </h1>
+      <input type="text" placeholder="ex) 분노, 슬픔, 기쁨, 신남, 화, 두려움, 공포, 우울 등"/>
+      <button>제출</button>
+    </div>
+  </body>
+</html>

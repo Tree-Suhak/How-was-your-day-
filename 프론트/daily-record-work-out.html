@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Activity Tracking for mental state</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col justify-between">
+      <header class="text-center p-6">
+        <h1 class="text-2xl font-bold">
+          오늘, 당신은 당신을 위해 무엇을 하였나요?
+        </h1>
+      </header>
+
+      <main class="flex-grow container mx-auto px-4">
+        <form action="#" method="POST">
+          <div class="space-y-6">
+            <div class="flex items-center">
+              <input type="checkbox" id="exercise" class="mr-2" />
+              <label for="exercise" class="flex-grow">운동</label>
+              <input type="text" id="exercise-time" placeholder="시간" class="flex-none w-20 p-2 border rounded"/>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="meditation" class="mr-2" />
+              <label for="meditation" class="flex-grow">명상</label>
+              <input type="text" id="exercise-time" placeholder="시간" class="flex-none w-20 p-2 border rounded"/>            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="reading" class="mr-2" />
+              <label for="reading" class="flex-grow">독서</label>
+              <input type="text" id="exercise-time" placeholder="시간" class="flex-none w-20 p-2 border rounded"/>            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="hobby" class="mr-2" />
+              <label for="hobby" class="flex-grow">취미</label>
+              <input type="text" id="exercise-time" placeholder="시간" class="flex-none w-20 p-2 border rounded"/>            </div>
+          </div>
+          
+          <div class="text-center mt-6">
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+              제출
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
