@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Daily Record Calendar - February 2024</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .calendar-day:hover {
+        background-color: #f3f4f6;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+    <div class="max-w-4xl mx-auto py-12">
+      <h1 class="text-4xl font-bold text-center mb-8">How was your day?</h1>
+      <div class="flex justify-between items-center mb-4">
+        <button
+          onclick="location.href='main-january.html'"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          January
+        </button>
+        <h2 class="text-2xl font-bold">February 2024</h2>
+        <button
+          onclick="location.href='main-march.html'"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          March
+        </button>
+      </div>
+      <div class="grid grid-cols-7 gap-4 text-center">
+        <div class="font-bold">Sun</div>
+        <div class="font-bold">Mon</div>
+        <div class="font-bold">Tue</div>
+        <div class="font-bold">Wed</div>
+        <div class="font-bold">Thu</div>
+        <div class="font-bold">Fri</div>
+        <div class="font-bold">Sat</div>
+
+        <!-- 전 달의 일부분 -->
+        <div class="text-gray-500">28</div>
+        <div class="text-gray-500">29</div>
+        <div class="text-gray-500">30</div>
+        <div class="text-gray-500">31</div>
+
+        <!-- 이번달 부분-->
+        <div class="calendar-day">1</div>
+        <div class="calendar-day">2</div>
+        <div class="calendar-day">3</div>
+        <div class="calendar-day">4</div>
+        <div class="calendar-day">5</div>
+        <div class="calendar-day">6</div>
+        <div class="calendar-day">7</div>
+        <div class="calendar-day">8</div>
+        <div class="calendar-day">9</div>
+        <div class="calendar-day">10</div>
+        <div class="calendar-day">11</div>
+        <div class="calendar-day">12</div>
+        <div class="calendar-day">13</div>
+        <div class="calendar-day">14</div>
+        <div class="calendar-day">15</div>
+        <div class="calendar-day">16</div>
+        <div class="calendar-day">17</div>
+        <div class="calendar-day">18</div>
+        <div class="calendar-day">19</div>
+        <div class="calendar-day">20</div>
+        <div class="calendar-day">21</div>
+        <div class="calendar-day">22</div>
+        <div class="calendar-day">23</div>
+        <div class="calendar-day">24</div>
+        <div class="calendar-day">25</div>
+        <div class="calendar-day">26</div>
+        <div class="calendar-day">27</div>
+        <div class="calendar-day">28</div>
+        <div class="calendar-day">29</div>
+      </div>
+    </div>
+  </body>
+</html>

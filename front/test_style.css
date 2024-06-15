@@ -1,0 +1,60 @@
+.calendar-container {
+    position: relative;
+    width: 100%; /* 부모 컨테이너의 너비에 맞추기 */
+    max-width: 800px; /* 최대 너비를 설정 */
+    height: auto; /* 자동 높이 조정 */
+    background-image: url('file:///C:/Users/user/Desktop/How%20was%20your%20day/How-was-your-day-/calendar_images/2024_4.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    padding-top: 125%; /* 이미지 비율에 맞게 패딩 설정 (가로:세로 = 4:5) */
+}
+
+.calendar-day {
+    position: absolute;
+    width: 50px; /* 클릭 가능한 영역의 크기 */
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.5); /* 반투명 배경 */
+}
+
+
+.calendar-day:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* 각 날짜의 위치 설정 */
+.day-1 { top: 12%; left: 14%; }
+.day-2 { top: 12%; left: 28%; }
+.day-3 { top: 12%; left: 42%; }
+.day-4 { top: 12%; left: 56%; }
+.day-5 { top: 12%; left: 70%; }
+.day-6 { top: 12%; left: 84%; }
+.day-7 { top: 20%; left: 98%; }
+.day-8 { top: 30%; left: 12%; }
+.day-9 { top: 30%; left: 26%; }
+.day-10 { top: 30%; left: 40%; }
+.day-11 { top: 30%; left: 54%; }
+.day-12 { top: 30%; left: 68%; }
+.day-13 { top: 30%; left: 82%; }
+.day-14 { top: 30%; left: 96%; }
+.day-15 { top: 45%; left: 12%; }
+.day-16 { top: 45%; left: 26%; }
+.day-17 { top: 45%; left: 40%; }
+.day-18 { top: 45%; left: 54%; }
+.day-19 { top: 45%; left: 68%; }
+.day-20 { top: 45%; left: 82%; }
+.day-21 { top: 45%; left: 96%; }
+.day-22 { top: 60%; left: 12%; }
+.day-23 { top: 60%; left: 26%; }
+.day-24 { top: 60%; left: 40%; }
+.day-25 { top: 60%; left: 54%; }
+.day-26 { top: 60%; left: 68%; }
+.day-27 { top: 60%; left: 82%; }
+.day-28 { top: 60%; left: 96%; }
+.day-29 { top: 75%; left: 12%; }
+.day-30 { top: 75%; left: 26%; }
