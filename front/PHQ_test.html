@@ -108,7 +108,6 @@
               </div>
             </div>
 
-
             <!-- #9 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>자신이 죽는 것이 더 낫다고 생각하거나 어떤 식으로든 자신을 해칠것이라고 생각한다.</p>
@@ -142,6 +141,35 @@
       </div>
     </div>
 
-    <script src="PHQ_test.js"></script>
+    <script>
+      async function submitPHQ9() {
+        const form = document.getElementById("phq9-form");
+        const formData = new FormData(form);
+        let score = 0;
+        for (let value of formData.values()) {
+          score += parseInt(value, 10);
+        }
+
+        const date = new Date().toISOString().split("T")[0];
+        const uid = localStorage.getItem("uid");
+
+        const response = await fetch("/save-test-result", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ uid, date, testType: "PHQ_9점수", score }),
+        });
+
+        if (response.ok) {
+          alert("검사 결과가 저장되었습니다.");
+          window.close();
+          window.opener.location.reload();
+        } else {
+          const result = await response.json();
+          alert(result.message || "검사 결과 저장에 실패했습니다.");
+        }
+      }
+    </script>
   </body>
 </html>

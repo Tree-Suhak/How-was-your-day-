@@ -21,12 +21,21 @@
       .container {
         text-align: center;
       }
-      input[type="text"] {
-        width: 80%;
-        padding: 8px;
-        margin-top: 10px;
-        border: 2px solid #ddd;
-        border-radius: 5px;
+      .emotion {
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .emotion img {
+        width: 50px;
+        height: 50px;
+        display: block;
+        margin: 0 auto;
+      }
+      .emotion span {
+        display: block;
+        margin-bottom: 5px;
       }
       button {
         width: 100px;
@@ -38,7 +47,9 @@
         border-radius: 5px;
         cursor: pointer;
       }
-      button:hover {background-color: #45a049;}
+      button:hover {
+        background-color: #45a049;
+      }
     </style>
   </head>
   <body>
@@ -46,8 +57,87 @@
       <h1 class="text-xl font-bold mb-4">
         당신의 오늘 하루를 감정으로 표현하자면 어떤 감정인가요?
       </h1>
-      <input type="text" placeholder="ex) 분노, 슬픔, 기쁨, 신남, 화, 두려움, 공포, 우울 등"/>
-      <button>제출</button>
+      <div id="emotion-list">
+        <!-- 이모티콘 리스트는 JavaScript로 동적으로 생성합니다. -->
+      </div>
+      <button onclick="submitEmotion()">제출</button>
     </div>
+
+    <script>
+      const emotions = [
+        { name: "즐거움", img: "Joy.jpg" },
+        { name: "분노", img: "Anger.jpg" },
+        { name: "불안", img: "Anxiety.jpg" },
+        { name: "평온함", img: "Calm.jpg" },
+        { name: "혼란", img: "Confusion.jpg" },
+        { name: "두려움", img: "Fear.jpg" },
+        { name: "지루함", img: "Boredom.jpg" },
+        { name: "기쁨", img: "Joy.jpg" },
+        { name: "슬픔", img: "Sadness.jpg" },
+        { name: "만족", img: "Satisfaction.jpg" },
+        { name: "후회", img: "Regret.jpg" },
+        { name: "억울", img: "Unfairness.jpg" },
+        { name: "외로움", img: "Loneliness.jpg" },
+        { name: "행복", img: "Happiness.jpg" },
+        { name: "절망", img: "Despair.jpg" },
+        { name: "다행", img: "Relief.jpg" },
+        { name: "서러움", img: "Sorrow.jpg" },
+        { name: "속상함", img: "Upset.jpg" },
+        { name: "쓸쓸함", img: "Loneliness.jpg" },
+        { name: "짜증", img: "Annoyance.jpg" },
+        { name: "허무", img: "Emptiness.jpg" },
+      ];
+
+      const emotionList = document.getElementById("emotion-list");
+      emotions.forEach((emotion) => {
+        const div = document.createElement("div");
+        div.className = "emotion";
+        div.innerHTML = `
+          <span>${emotion.name}</span>
+          <img src="../emoge_list/${emotion.img}" alt="${emotion.name}" data-name="${emotion.name}" />
+        `;
+        div.onclick = () => selectEmotion(emotion.name);
+        emotionList.appendChild(div);
+      });
+
+      let selectedEmotion = null;
+
+      function selectEmotion(name) {
+        selectedEmotion = name;
+        document.querySelectorAll(".emotion").forEach((div) => {
+          div.style.border =
+            div.querySelector("span").textContent === name
+              ? "2px solid green"
+              : "none";
+        });
+      }
+
+      async function submitEmotion() {
+        if (!selectedEmotion) {
+          alert("감정을 선택해주세요.");
+          return;
+        }
+
+        const date = new Date().toISOString().split("T")[0]; // 오늘 날짜
+        const uid = localStorage.getItem("uid"); // UID 가져오기
+
+        const response = await fetch("/save-emotion", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ date, emoji: selectedEmotion, uid }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert("감정이 저장되었습니다.");
+          window.close();
+          window.opener.location.reload();
+        } else {
+          alert(result.message || "감정 저장에 실패했습니다.");
+        }
+      }
+    </script>
   </body>
 </html>

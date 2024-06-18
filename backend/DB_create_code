@@ -13,23 +13,31 @@ CREATE TABLE 고객 (
 
 -- 상태정보 테이블 생성
 CREATE TABLE 상태정보 (
-    상태번호 CHAR(5) PRIMARY KEY,
+    SID CHAR(5) PRIMARY KEY,
     UID CHAR(5),
     날짜 DATE,
     PHQ_9점수 INT,
     GAD_7점수 INT,
     통합적_한국판_우울증_척도_점수 INT,
     한국형_스트레스_자가척도_점수 INT,
-    오늘의_기본_이모지 VARCHAR(20),
     FOREIGN KEY (UID) REFERENCES 고객(UID)
 );
 
 -- 활동정보 테이블 생성
 CREATE TABLE 활동정보 (
-    활동번호 CHAR(5) PRIMARY KEY,
+    AID CHAR(5) PRIMARY KEY,
     UID CHAR(5),
     날짜 DATE,
     활동명 CHAR(20),
     활동시간 INT,
+    FOREIGN KEY (UID) REFERENCES 고객(UID)
+);
+
+-- 기분 테이블 생성
+CREATE TABLE 기분 (
+    EID CHAR(5) PRIMARY KEY,
+    UID CHAR(5),
+    날짜 DATE,
+    EMOJI VARCHAR(20),
     FOREIGN KEY (UID) REFERENCES 고객(UID)
 );

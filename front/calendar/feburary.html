@@ -1,84 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Daily Record Calendar - February 2024</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-      .calendar-day:hover {
-        background-color: #f3f4f6;
-        cursor: pointer;
-      }
+        .calendar-day:hover {
+            background-color: #f3f4f6;
+            cursor: pointer;
+        }
+        .calendar-day.sunday {
+            color: red;
+        }
+        .calendar-day.saturday {
+            color: blue;
+        }
+        .calendar-day.prev-month.sunday {
+            color: rgba(255, 0, 0, 0.5);
+        }
+        .calendar-day.prev-month.saturday {
+            color: rgba(0, 0, 255, 0.5);
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px; /* 날짜 간격을 조정합니다 */
+        }
+        .calendar-day,
+        .font-bold {
+            padding: 10px;
+            border: 1px solid black;
+            height: 100px; /* 각 칸의 높이를 넓히기 위해 height 속성을 추가합니다 */
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .font {
+            padding: 10px;
+            height: 80px; /* 각 칸의 높이를 넓히기 위해 height 속성을 추가합니다 */
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+        }
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px; /* 제목의 높이를 맞추기 위해 height 속성을 추가합니다 */
+        }
+        .title {
+            text-align: center;
+        }
+        .month-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px; /* 아래에 여백 추가 */
+        }
+        .button-row {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .button-row button {
+            background-color: #32cd32; /* 귀여운 녹색 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-row button:hover {
+            background-color: #2e8b57; /* 버튼 호버 색상 */
+        }
+        .calendar-header .font-bold {
+            color: black;
+        }
+        .calendar-header .sunday {
+            color: red;
+        }
+        .calendar-header .saturday {
+            color: blue;
+        }
     </style>
-  </head>
-  <body class="bg-white text-gray-800">
+</head>
+<body class="bg-white text-gray-800">
     <div class="max-w-4xl mx-auto py-12">
-      <h1 class="text-4xl font-bold text-center mb-8">How was your day?</h1>
-      <div class="flex justify-between items-center mb-4">
-        <button
-          onclick="location.href='main-january.html'"
-          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          January
-        </button>
-        <h2 class="text-2xl font-bold">February 2024</h2>
-        <button
-          onclick="location.href='main-march.html'"
-          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          March
-        </button>
-      </div>
-      <div class="grid grid-cols-7 gap-4 text-center">
-        <div class="font-bold">Sun</div>
-        <div class="font-bold">Mon</div>
-        <div class="font-bold">Tue</div>
-        <div class="font-bold">Wed</div>
-        <div class="font-bold">Thu</div>
-        <div class="font-bold">Fri</div>
-        <div class="font-bold">Sat</div>
+        <div class="title-container">
+            <h1 class="text-4xl font title">How was your day?</h1>
+        </div>
+        <div class="month-container">
+            <h2 class="text-2xl font">February 2024</h2>
+        </div>
+        <!-- 추가된 기능 버튼들 -->
+        <div class="button-row">
+            <button onclick="location.href='../diary.html'">일기</button>
+            <button onclick="location.href='../daily-record-work-out.html'">활동 기록</button>
+            <button onclick="location.href='../choose-the-list.html'">심리검사</button>
+            <button onclick="location.href='../daily-record-feeling.html'">오늘의 하루 이모티콘</button>
+        </div>
+        <div class="flex justify-between items-center mb-4 no-border">
+            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">January</button>
+            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">March</button>
+        </div>
+        <div class="calendar-grid text-center calendar-header">
+            <div class="font-bold sunday">Sun</div>
+            <div class="font-bold">Mon</div>
+            <div class="font-bold">Tue</div>
+            <div class="font-bold">Wed</div>
+            <div class="font-bold">Thu</div>
+            <div class="font-bold">Fri</div>
+            <div class="font-bold saturday">Sat</div>
 
-        <!-- 전 달의 일부분 -->
-        <div class="text-gray-500">28</div>
-        <div class="text-gray-500">29</div>
-        <div class="text-gray-500">30</div>
-        <div class="text-gray-500">31</div>
+            <!-- 전 달의 일부분 -->
+            <div class="calendar-day prev-month sunday" data-date="28">28</div>
+            <div class="calendar-day prev-month" data-date="29">29</div>
+            <div class="calendar-day prev-month" data-date="30">30</div>
+            <div class="calendar-day prev-month" data-date="31">31</div>
 
-        <!-- 이번달 부분-->
-        <div class="calendar-day">1</div>
-        <div class="calendar-day">2</div>
-        <div class="calendar-day">3</div>
-        <div class="calendar-day">4</div>
-        <div class="calendar-day">5</div>
-        <div class="calendar-day">6</div>
-        <div class="calendar-day">7</div>
-        <div class="calendar-day">8</div>
-        <div class="calendar-day">9</div>
-        <div class="calendar-day">10</div>
-        <div class="calendar-day">11</div>
-        <div class="calendar-day">12</div>
-        <div class="calendar-day">13</div>
-        <div class="calendar-day">14</div>
-        <div class="calendar-day">15</div>
-        <div class="calendar-day">16</div>
-        <div class="calendar-day">17</div>
-        <div class="calendar-day">18</div>
-        <div class="calendar-day">19</div>
-        <div class="calendar-day">20</div>
-        <div class="calendar-day">21</div>
-        <div class="calendar-day">22</div>
-        <div class="calendar-day">23</div>
-        <div class="calendar-day">24</div>
-        <div class="calendar-day">25</div>
-        <div class="calendar-day">26</div>
-        <div class="calendar-day">27</div>
-        <div class="calendar-day">28</div>
-        <div class="calendar-day">29</div>
-      </div>
+            <!-- 이번달 부분-->
+            <div class="calendar-day" data-date="1">1</div>
+            <div class="calendar-day" data-date="2">2</div>
+            <div class="calendar-day saturday" data-date="3">3</div>
+            <div class="calendar-day sunday" data-date="4">4</div>
+            <div class="calendar-day" data-date="5">5</div>
+            <div class="calendar-day" data-date="6">6</div>
+            <div class="calendar-day" data-date="7">7</div>
+            <div class="calendar-day" data-date="8">8</div>
+            <div class="calendar-day" data-date="9">9</div>
+            <div class="calendar-day saturday" data-date="10">10</div>
+            <div class="calendar-day sunday" data-date="11">11</div>
+            <div class="calendar-day" data-date="12">12</div>
+            <div class="calendar-day" data-date="13">13</div>
+            <div class="calendar-day" data-date="14">14</div>
+            <div class="calendar-day" data-date="15">15</div>
+            <div class="calendar-day" data-date="16">16</div>
+            <div class="calendar-day saturday" data-date="17">17</div>
+            <div class="calendar-day sunday" data-date="18">18</div>
+            <div class="calendar-day" data-date="19">19</div>
+            <div class="calendar-day" data-date="20">20</div>
+            <div class="calendar-day" data-date="21">21</div>
+            <div class="calendar-day" data-date="22">22</div>
+            <div class="calendar-day" data-date="23">23</div>
+            <div class="calendar-day saturday" data-date="24">24</div>
+            <div class="calendar-day sunday" data-date="25">25</div>
+            <div class="calendar-day" data-date="26">26</div>
+            <div class="calendar-day" data-date="27">27</div>
+            <div class="calendar-day" data-date="28">28</div>
+            <div class="calendar-day" data-date="29">29</div>
+        </div>
     </div>
-  </body>
+</body>
 </html>
