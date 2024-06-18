@@ -1,94 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Record - Feeling</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        background-color: #f0f4f8;
-        color: #333;
-        font-family: Arial, sans-serif;
-      }
-      .container {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-      h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        text-align: center;
-        color: #4a90e2;
-      }
-      textarea {
-        width: 100%;
-        height: 300px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        resize: none;
-      }
-      .button-container {
-        display: flex;
-        justify-content: flex-end;
-      }
-      .button {
-        background-color: #4a90e2;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 20px;
-      }
-      .button:hover {
-        background-color: #357ab8;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>오늘 하루의 기록</h1>
-      <textarea
-        id="diary-content"
-        placeholder="당신의 오늘 하루는 어땠나요?"
-      ></textarea>
-      <div class="button-container">
-        <button class="button" onclick="saveDiary()">저장</button>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800">
+    <div class="max-w-4xl mx-auto py-12">
+        <h1 class="text-4xl font-bold text-center mb-8">오늘 하루의 기록</h1>
+        <form id="diary-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">Date</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="entry">Diary Entry</label>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="entry" rows="10" required></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Save</button>
+            </div>
+        </form>
     </div>
+
     <script>
-      function saveDiary() {
-        const content = document.getElementById("diary-content").value;
-        const date = new Date().toISOString().split("T")[0]; // YYYY-MM-DD 형식의 날짜
-        fetch("/save-diary", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ date, content }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              alert("일기가 저장되었습니다.");
-              window.opener.location.reload(); // 부모 창 새로고침
-              window.close(); // 현재 창 닫기
-            } else {
-              alert("일기 저장에 실패했습니다.");
+        document.getElementById('diary-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const date = document.getElementById('date').value;
+            const entry = document.getElementById('entry').value;
+            const uid = localStorage.getItem("uid");
+
+            try {
+                const response = await fetch('/save-diary', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ date, entry, uid })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Diary saved successfully.');
+                } else {
+                    alert('Failed to save diary.');
+                }
+            } catch (error) {
+                console.error('Error saving diary:', error);
+                alert('Failed to save diary.');
+            } finally {
+                window.location.href = 'main.html';
             }
-          });
-      }
+        });
     </script>
-  </body>
+</body>
 </html>

@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: "localhost",
-  user: "your_username",
-  password: "your_password",
+  user: "root",
+  password: "root",
   database: "HowWasYourDay"
 });
 
@@ -95,17 +95,23 @@ app.get("/", (req, res) => {
 });
 
 app.post("/save-diary", (req, res) => {
-  const { date, content } = req.body;
-  const filePath = path.join(__dirname, "../diaries", `${date}.txt`);
-
-  fs.writeFile(filePath, content, (err) => {
-    if (err) {
-      console.error("Error saving diary:", err);
-      return res.json({ success: false });
+    const { date, content } = req.body;
+  
+    if (!date || !content) {
+      return res.status(400).json({ success: false, message: "Invalid input data" });
     }
-    res.json({ success: true });
+  
+    const filePath = path.join(__dirname, "../diaries", `${date}.txt`);
+  
+    fs.writeFile(filePath, content, (err) => {
+      if (err) {
+        console.error("Error saving diary:", err);
+        return res.status(500).json({ success: false, message: "Failed to save diary" });
+      }
+      res.json({ success: true });
+    });
   });
-});
+  
 
 app.get("/load-diaries", (req, res) => {
   const diariesDir = path.join(__dirname, "../diaries");
@@ -129,43 +135,23 @@ app.get("/load-diaries", (req, res) => {
 
 app.get("/get-activities", (req, res) => {
   const { year, month, uid } = req.query;
-  const activitiesDir = path.join(__dirname, "../activities");
-  const activities = [];
-
-  fs.readdir(activitiesDir, (err, files) => {
+  const query = "SELECT * FROM 활동정보 WHERE YEAR(날짜) = ? AND MONTH(날짜) = ? AND UID = ?";
+  db.query(query, [year, month, uid], (err, results) => {
     if (err) {
-      console.error("Error loading activities:", err);
-      return res.json(activities);
+      console.error("Error fetching activities:", err);
+      return res.json([]);
     }
-
-    files.forEach((file) => {
-      if (file.includes(`${uid}_${year}-${month}`)) {
-        const content = fs.readFileSync(
-          path.join(activitiesDir, file),
-          "utf-8"
-        );
-        activities.push(JSON.parse(content));
-      }
-    });
-
-    res.json(activities);
+    res.json(results);
   });
 });
 
 app.post("/save-activity", (req, res) => {
   const { uid, date, activities } = req.body;
-  const activitiesDir = path.join(__dirname, "../activities");
 
-  if (!fs.existsSync(activitiesDir)) {
-    fs.mkdirSync(activitiesDir);
-  }
-
-  activities.forEach((activity, index) => {
-    const activityFile = path.join(
-      activitiesDir,
-      `${uid}_${date}_${index}.json`
-    );
-    fs.writeFileSync(activityFile, JSON.stringify(activity), (err) => {
+  activities.forEach((activity) => {
+    const query = "INSERT INTO 활동정보 (AID, UID, 날짜, 활동명, 활동시간) VALUES (?, ?, ?, ?, ?)";
+    const aid = `A${Math.random().toString(36).substr(2, 9)}`;
+    db.query(query, [aid, uid, date, activity.name, activity.time], (err, result) => {
       if (err) {
         console.error("Error saving activity:", err);
         return res.json({ success: false });
@@ -245,6 +231,19 @@ app.post("/save-test-result", (req, res) => {
         res.json({ success: true });
       });
     });
+  });
+});
+
+app.get('/get-psychological-tests', (req, res) => {
+  const { year, month, uid } = req.query;
+  const query = 'SELECT * FROM 상태정보 WHERE YEAR(날짜) = ? AND MONTH(날짜) = ? AND UID = ?';
+
+  db.query(query, [year, month, uid], (err, results) => {
+      if (err) {
+          console.error('Error fetching psychological tests:', err);
+          return res.json([]);
+      }
+      res.json(results);
   });
 });
 
