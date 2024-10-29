@@ -8,6 +8,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, "../front")));
+app.use('/emoji', express.static(path.join(__dirname, '../emoji')));
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
@@ -61,7 +62,7 @@ db.connect((err) => {
 
     const createActivityTable = `
       CREATE TABLE IF NOT EXISTS 활동정보 (
-        AID CHAR(5) PRIMARY KEY,
+        AID VARCHAR(10) PRIMARY KEY,
         UID CHAR(5),
         날짜 DATE,
         활동명 CHAR(20),
@@ -94,42 +95,183 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../front", "main.html"));
 });
 
-app.post("/save-diary", (req, res) => {
-    const { date, content } = req.body;
-  
-    if (!date || !content) {
-      return res.status(400).json({ success: false, message: "Invalid input data" });
-    }
-  
-    const filePath = path.join(__dirname, "../diaries", `${date}.txt`);
-  
-    fs.writeFile(filePath, content, (err) => {
-      if (err) {
-        console.error("Error saving diary:", err);
-        return res.status(500).json({ success: false, message: "Failed to save diary" });
-      }
-      res.json({ success: true });
-    });
-  });
-  
+app.get("/get-emotions", (req, res) => {
+  const { year, month, uid } = req.query;
 
-app.get("/load-diaries", (req, res) => {
-  const diariesDir = path.join(__dirname, "../diaries");
-  const diaries = {};
-
-  fs.readdir(diariesDir, (err, files) => {
+  const query = `
+    SELECT 날짜, EMOJI
+    FROM 기분
+    WHERE UID = ? AND YEAR(날짜) = ? AND MONTH(날짜) = ?
+  `;
+  
+  db.query(query, [uid, year, month], (err, results) => {
     if (err) {
-      console.error("Error loading diaries:", err);
-      return res.json(diaries);
+      console.error("Error fetching emotions:", err);
+      return res.status(500).json({ success: false, message: "데이터베이스 오류" });
     }
+    res.json(results);  // 감정 데이터를 클라이언트에 반환
+  });
+});
 
-    files.forEach((file) => {
-      const date = path.basename(file, ".txt");
-      const content = fs.readFileSync(path.join(diariesDir, file), "utf-8");
-      diaries[date] = content;
+app.post("/save-diary", (req, res) => {
+  const { date, entry, uid } = req.body;
+  const currentTime = new Date();
+  const id = `d${currentTime.getFullYear()}${(currentTime.getMonth() + 1).toString().padStart(2, '0')}${currentTime.getDate().toString().padStart(2, '0')}${currentTime.getHours().toString().padStart(2, '0')}${currentTime.getMinutes().toString().padStart(2, '0')}${currentTime.getSeconds().toString().padStart(2, '0')}`;
+
+  if (!date || !entry) {
+      return res.status(400).json({ success: false, message: "Invalid input data" });
+  }
+
+  const filePath = path.join(__dirname, "../data/diaries.json");
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+          if (err.code === 'ENOENT') {
+              const diaries = [];
+              const newDiary = { id, uid, date, content: entry };
+              diaries.push(newDiary);
+
+              fs.writeFile(filePath, JSON.stringify(diaries, null, 2), (writeErr) => {
+                  if (writeErr) {
+                      console.error("Error saving diary:", writeErr);
+                      return res.status(500).json({ success: false, message: "Failed to save diary" });
+                  }
+                  res.json({ success: true });
+              });
+          } else {
+              console.error("Error reading diaries:", err);
+              return res.status(500).json({ success: false, message: "Failed to read diaries" });
+          }
+      } else {
+          let diaries;
+          try {
+              diaries = JSON.parse(data);
+          } catch (parseErr) {
+              console.error("Error parsing diaries:", parseErr);
+              return res.status(500).json({ success: false, message: "Failed to parse diaries" });
+          }
+
+          const newDiary = { id, uid, date, content: entry };
+          diaries.push(newDiary);
+
+          fs.writeFile(filePath, JSON.stringify(diaries, null, 2), (writeErr) => {
+              if (writeErr) {
+                  console.error("Error saving diary:", writeErr);
+                  return res.status(500).json({ success: false, message: "Failed to save diary" });
+              }
+              res.json({ success: true });
+          });
+      }
+  });
+});
+
+app.post('/delete-diaries', (req, res) => {
+  const { ids } = req.body;
+  const filePath = path.join(__dirname, "../data/diaries.json");
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+          console.error("Error reading diaries:", err);
+          return res.status(500).json({ success: false, message: "Failed to read diaries" });
+      }
+
+      let diaries = JSON.parse(data);
+      diaries = diaries.filter(diary => !ids.includes(diary.id));
+
+      fs.writeFile(filePath, JSON.stringify(diaries, null, 2), (err) => {
+          if (err) {
+              console.error("Error deleting diaries:", err);
+              return res.status(500).json({ success: false, message: "Failed to delete diaries" });
+          }
+          res.json({ success: true });
+      });
+  });
+});
+
+app.post('/edit-diary/:id', (req, res) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  const filePath = path.join(__dirname, "../data/diaries.json");
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+          console.error("Error reading diaries:", err);
+          return res.status(500).json({ success: false, message: "Failed to read diaries" });
+      }
+
+      let diaries = JSON.parse(data);
+      const diaryIndex = diaries.findIndex(diary => diary.id === id);
+      if (diaryIndex === -1) {
+          return res.status(404).json({ success: false, message: "Diary not found" });
+      }
+
+      diaries[diaryIndex].content = content;
+
+      fs.writeFile(filePath, JSON.stringify(diaries, null, 2), (err) => {
+          if (err) {
+              console.error("Error editing diary:", err);
+              return res.status(500).json({ success: false, message: "Failed to edit diary" });
+          }
+          res.json({ success: true });
+      });
+  });
+});
+
+
+app.get("/emotion-frequency", (req, res) => {
+    const { uid, year, month } = req.query;
+  
+    const query = `
+      SELECT EMOJI, COUNT(*) AS count
+      FROM 기분
+      WHERE UID = ? AND YEAR(날짜) = ? AND MONTH(날짜) = ?
+      GROUP BY EMOJI
+      ORDER BY count DESC
+    `;
+  
+    db.query(query, [uid, year, month], (err, results) => {
+      if (err) {
+        console.error("Error fetching emotion frequency:", err);
+        return res.status(500).json({ success: false, message: "데이터베이스 오류" });
+      }
+      res.json(results);
     });
+});
+  
+  
 
-    res.json(diaries);
+app.get('/get-diaries', (req, res) => {
+  const filePath = path.join(__dirname, '../data/diaries.json');
+  
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+      if (err) {
+          console.error('Error loading diaries:', err);
+          return res.status(500).json({ success: false, message: 'Failed to load diaries' });
+      }
+      
+      const diaries = JSON.parse(data);
+      res.json(diaries);
+  });
+});
+
+app.get('/get-diary/:id', (req, res) => {
+  const { id } = req.params;
+  const filePath = path.join(__dirname, '../data/diaries.json');
+  
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+      if (err) {
+          console.error('Error loading diary:', err);
+          return res.status(500).json({ success: false, message: 'Failed to load diary' });
+      }
+      
+      const diaries = JSON.parse(data);
+      const diary = diaries.find(d => d.id === id);
+      
+      if (diary) {
+          res.json(diary);
+      } else {
+          res.status(404).json({ success: false, message: 'Diary not found' });
+      }
   });
 });
 
@@ -148,19 +290,48 @@ app.get("/get-activities", (req, res) => {
 app.post("/save-activity", (req, res) => {
   const { uid, date, activities } = req.body;
 
+  console.log("Received UID:", uid);
+  console.log("Received date:", date);
+  console.log("Received activities:", activities);
+
+  // UID가 존재하는지 확인
+  if (!uid) {
+    return res.status(400).json({ success: false, message: "UID is missing" });
+  }
+
+  // 각 활동에 대해 데이터베이스에 저장
   activities.forEach((activity) => {
-    const query = "INSERT INTO 활동정보 (AID, UID, 날짜, 활동명, 활동시간) VALUES (?, ?, ?, ?, ?)";
-    const aid = `A${Math.random().toString(36).substr(2, 9)}`;
+    const activityMap = {
+      "운동": "E",
+      "명상": "M",
+      "독서": "R",
+      "취미": "H",
+    };
+
+    // 날짜를 "YYYYMMDD" 형식으로 변환
+    const formattedDate = date.replace(/-/g, "");
+    const activityInitial = activityMap[activity.name] || "X";
+    const aid = `A${formattedDate}${activityInitial}`;
+
+    // 활동 정보가 있으면 업데이트, 없으면 새로 삽입
+    const query = `
+      INSERT INTO 활동정보 (AID, UID, 날짜, 활동명, 활동시간)
+      VALUES (?, ?, ?, ?, ?)
+      ON DUPLICATE KEY UPDATE 활동시간 = VALUES(활동시간)`;
+
     db.query(query, [aid, uid, date, activity.name, activity.time], (err, result) => {
       if (err) {
         console.error("Error saving activity:", err);
-        return res.json({ success: false });
+        return res.status(500).json({ success: false, message: "Error saving activity" });
       }
     });
   });
 
-  res.json({ success: true });
+  res.json({ success: true, message: "All activities saved successfully" });
 });
+
+
+
 
 app.post("/save-emotion", (req, res) => {
   const { date, emoji } = req.body;
@@ -246,6 +417,148 @@ app.get('/get-psychological-tests', (req, res) => {
       res.json(results);
   });
 });
+
+
+// 주간 목표 저장
+app.post('/save-goal', (req, res) => {
+  const { goals, startDate, endDate } = req.body; // 클라이언트에서 받은 목표 데이터
+  const filePath = path.join(__dirname, '../data/weekly_goals.json'); // 목표를 저장할 파일 경로
+
+  // 파일에 목표 저장
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+      let goalData = [];
+
+      if (!err && data) {
+          try {
+              goalData = JSON.parse(data); // 기존 데이터를 파싱
+          } catch (parseErr) {
+              console.error('Error parsing weekly_goals.json:', parseErr);
+              return res.status(500).json({ success: false, message: '데이터 파싱 오류' });
+          }
+      }
+
+      // 기존 목표가 있는지 확인
+      const existingGoalIndex = goalData.findIndex(goal => goal.startDate === startDate && goal.endDate === endDate);
+      
+      if (existingGoalIndex > -1) {
+          // 기존 목표가 있는 경우, 업데이트
+          goalData[existingGoalIndex].goals = goals;
+      } else {
+          // 기존 목표가 없는 경우, 새 목표 추가
+          goalData.push({ startDate, endDate, goals });
+      }
+
+      // 업데이트된 목표 데이터를 파일에 저장
+      fs.writeFile(filePath, JSON.stringify(goalData, null, 2), (writeErr) => {
+          if (writeErr) {
+              console.error('Error saving goals:', writeErr);
+              return res.status(500).json({ success: false, message: '목표 저장 실패' });
+          }
+          res.json({ success: true, message: '목표가 저장되었습니다.' });
+      });
+  });
+});
+
+
+// 주간 목표 불러오기
+app.get('/get-goal', (req, res) => {
+  const filePath = path.join(__dirname, '../data/weekly_goals.json');
+  const currentDate = new Date();
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    if (err) {
+      console.error('Error loading goals:', err);
+      return res.status(500).json({ success: false, message: '목표 불러오기 실패' });
+    }
+
+    const goals = JSON.parse(data);
+    const currentGoal = goals.find(goal => {
+      const start = new Date(goal.startDate);
+      const end = new Date(goal.endDate);
+      return currentDate >= start && currentDate <= end;
+    });
+
+    if (currentGoal) {
+      res.json(currentGoal);
+    } else {
+      res.json(null);
+    }
+  });
+});
+
+
+// 게시글 저장
+app.post('/save-post', (req, res) => {
+  const { title, content } = req.body;
+  const postId = `P${Math.random().toString(36).substr(2, 9)}`;
+  const post = { postId, title, content, createdAt: new Date() };
+
+  const filePath = path.join(__dirname, '../data/posts.json');
+
+  // 기존 게시글 목록 불러오기
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+      let posts = [];
+      if (!err && data) {
+          posts = JSON.parse(data);
+      }
+
+      // 새로운 게시글 추가
+      posts.push(post);
+
+      // 게시글 목록 저장
+      fs.writeFile(filePath, JSON.stringify(posts, null, 2), (err) => {
+          if (err) {
+              console.error('Error saving post:', err);
+              return res.status(500).json({ success: false, message: '게시글 저장 실패' });
+          }
+          res.json({ success: true, message: '게시글이 저장되었습니다.' });
+      });
+  });
+});
+
+// 게시글 불러오기
+app.get('/get-posts', (req, res) => {
+  const filePath = path.join(__dirname, '../data/posts.json');
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+      if (err) {
+          console.error('Error loading posts:', err);
+          return res.status(500).json({ success: false, message: '게시글 불러오기 실패' });
+      }
+
+      const posts = JSON.parse(data);
+      res.json(posts);
+  });
+});
+
+app.post('/save-alert-settings', (req, res) => {
+  const settings = req.body;
+  const filePath = path.join(__dirname, '../data/alert_settings.json');
+
+  fs.writeFile(filePath, JSON.stringify(settings, null, 2), (err) => {
+      if (err) {
+          console.error('Error saving alert settings:', err);
+          return res.status(500).json({ success: false, message: '설정 저장 실패' });
+      }
+      res.json({ success: true, message: '설정이 저장되었습니다.' });
+  });
+});
+
+app.get('/get-alert-settings', (req, res) => {
+  const filePath = path.join(__dirname, '../data/alert_settings.json');
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+      if (err) {
+          console.error('Error loading alert settings:', err);
+          return res.status(500).json({ success: false, message: '설정 불러오기 실패' });
+      }
+
+      const settings = JSON.parse(data);
+      res.json(settings);
+  });
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

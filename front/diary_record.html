@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800">
+    <div class="max-w-4xl mx-auto py-12">
+        <h1 class="text-4xl font-bold text-center mb-8">오늘 하루의 기록</h1>
+        <form id="diary-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">Date</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="entry">Diary Entry</label>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="entry" rows="10" required></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('diary-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const date = document.getElementById('date').value;
+            const entry = document.getElementById('entry').value;
+            const uid = localStorage.getItem("uid");
+
+            try {
+                const response = await fetch('/save-diary', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ date, entry, uid })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Diary saved successfully.');
+                } else {
+                    alert('Failed to save diary.');
+                }
+            } catch (error) {
+                console.error('Error saving diary:', error);
+                alert('Failed to save diary.');
+            } finally {
+                window.location.href = 'main.html';
+            }
+        });
+    </script>
+</body>
+</html>

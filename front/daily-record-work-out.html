@@ -36,15 +36,22 @@
                 class="flex-none w-20 p-2 border rounded"
                 min="0"
               />
-              <input
-                type="number"
-                id="exercise-minutes"
-                placeholder="분"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-                max="59"
-              />
+              <select id="exercise-minutes" class="flex-none w-24 p-2 border rounded">
+                <option value="0">0분</option>
+                <option value="5">5분</option>
+                <option value="10">10분</option>
+                <option value="15">15분</option>
+                <option value="20">20분</option>
+                <option value="25">25분</option>
+                <option value="30">30분</option>
+                <option value="35">35분</option>
+                <option value="40">40분</option>
+                <option value="45">45분</option>
+                <option value="50">50분</option>
+                <option value="55">55분</option>
+              </select>
             </div>
+
             <div class="flex items-center">
               <input
                 type="checkbox"
@@ -61,15 +68,22 @@
                 class="flex-none w-20 p-2 border rounded"
                 min="0"
               />
-              <input
-                type="number"
-                id="meditation-minutes"
-                placeholder="분"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-                max="59"
-              />
+              <select id="meditation-minutes" class="flex-none w-24 p-2 border rounded">
+                <option value="0">0분</option>
+                <option value="5">5분</option>
+                <option value="10">10분</option>
+                <option value="15">15분</option>
+                <option value="20">20분</option>
+                <option value="25">25분</option>
+                <option value="30">30분</option>
+                <option value="35">35분</option>
+                <option value="40">40분</option>
+                <option value="45">45분</option>
+                <option value="50">50분</option>
+                <option value="55">55분</option>
+              </select>
             </div>
+
             <div class="flex items-center">
               <input
                 type="checkbox"
@@ -86,15 +100,22 @@
                 class="flex-none w-20 p-2 border rounded"
                 min="0"
               />
-              <input
-                type="number"
-                id="reading-minutes"
-                placeholder="분"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-                max="59"
-              />
+              <select id="reading-minutes" class="flex-none w-24 p-2 border rounded">
+                <option value="0">0분</option>
+                <option value="5">5분</option>
+                <option value="10">10분</option>
+                <option value="15">15분</option>
+                <option value="20">20분</option>
+                <option value="25">25분</option>
+                <option value="30">30분</option>
+                <option value="35">35분</option>
+                <option value="40">40분</option>
+                <option value="45">45분</option>
+                <option value="50">50분</option>
+                <option value="55">55분</option>
+              </select>
             </div>
+
             <div class="flex items-center">
               <input
                 type="checkbox"
@@ -111,14 +132,20 @@
                 class="flex-none w-20 p-2 border rounded"
                 min="0"
               />
-              <input
-                type="number"
-                id="hobby-minutes"
-                placeholder="분"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-                max="59"
-              />
+              <select id="hobby-minutes" class="flex-none w-24 p-2 border rounded">
+                <option value="0">0분</option>
+                <option value="5">5분</option>
+                <option value="10">10분</option>
+                <option value="15">15분</option>
+                <option value="20">20분</option>
+                <option value="25">25분</option>
+                <option value="30">30분</option>
+                <option value="35">35분</option>
+                <option value="40">40분</option>
+                <option value="45">45분</option>
+                <option value="50">50분</option>
+                <option value="55">55분</option>
+              </select>
             </div>
           </div>
 
@@ -135,59 +162,132 @@
       </main>
     </div>
     <script>
-      async function submitActivity() {
-        const activities = [];
-        const date = new Date().toISOString().split("T")[0]; // 오늘 날짜
+        async function loadActivities() {
+            const uid = localStorage.getItem("uid");
+            const date = new Date().toISOString().split("T")[0];
 
-        if (document.getElementById("exercise").checked) {
-          const hours =
-            parseInt(document.getElementById("exercise-hours").value) || 0;
-          const minutes =
-            parseInt(document.getElementById("exercise-minutes").value) || 0;
-          const time = hours + minutes / 60;
-          activities.push({ name: "운동", time });
-        }
-        if (document.getElementById("meditation").checked) {
-          const hours =
-            parseInt(document.getElementById("meditation-hours").value) || 0;
-          const minutes =
-            parseInt(document.getElementById("meditation-minutes").value) || 0;
-          const time = hours + minutes / 60;
-          activities.push({ name: "명상", time });
-        }
-        if (document.getElementById("reading").checked) {
-          const hours =
-            parseInt(document.getElementById("reading-hours").value) || 0;
-          const minutes =
-            parseInt(document.getElementById("reading-minutes").value) || 0;
-          const time = hours + minutes / 60;
-          activities.push({ name: "독서", time });
-        }
-        if (document.getElementById("hobby").checked) {
-          const hours =
-            parseInt(document.getElementById("hobby-hours").value) || 0;
-          const minutes =
-            parseInt(document.getElementById("hobby-minutes").value) || 0;
-          const time = hours + minutes / 60;
-          activities.push({ name: "취미", time });
+            try {
+                const response = await fetch(`/get-activities?uid=${uid}&date=${date}`);
+                if (response.ok) {
+                    const activities = await response.json();
+                    activities.forEach(activity => {
+                        const activityId = activity.활동명.toLowerCase();
+                        const hoursInput = document.getElementById(`${activityId}-hours`);
+                        const minutesInput = document.getElementById(`${activityId}-minutes`);
+                        const checkbox = document.getElementById(activityId);
+
+                        if (checkbox && hoursInput && minutesInput) {
+                            checkbox.checked = true;
+                            const [hours, minutes] = convertDecimalToTime(activity.활동시간).split('시간 ');
+                            hoursInput.value = parseInt(hours) || 0;
+                            minutesInput.value = parseInt(minutes.replace("분", "")) || 0;
+                        }
+                    });
+                } else {
+                    console.error("Failed to load activities:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Error loading activities:", error);
+            }
         }
 
-        const response = await fetch("/save-activity", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ date, activities }),
-        });
+        async function submitActivity() {
+            const uid = localStorage.getItem("uid");
+            const date = new Date().toISOString().split("T")[0];
 
-        if (response.ok) {
-          alert("활동이 저장되었습니다.");
-          window.close();
-          window.opener.location.reload();
-        } else {
-          alert("활동 저장에 실패했습니다.");
+            if (!uid) {
+                alert("UID가 없습니다. 다시 로그인 해주세요.");
+                return;
+            }
+
+            const activities = [];
+            if (document.getElementById("exercise").checked) {
+                const hours = parseInt(document.getElementById("exercise-hours").value) || 0;
+                const minutes = parseInt(document.getElementById("exercise-minutes").value) || 0;
+                const time = convertTimeToDecimal(hours, minutes);
+                activities.push({ name: "운동", time });
+            }
+            if (document.getElementById("meditation").checked) {
+                const hours = parseInt(document.getElementById("meditation-hours").value) || 0;
+                const minutes = parseInt(document.getElementById("meditation-minutes").value) || 0;
+                const time = convertTimeToDecimal(hours, minutes);
+                activities.push({ name: "명상", time });
+            }
+            if (document.getElementById("reading").checked) {
+                const hours = parseInt(document.getElementById("reading-hours").value) || 0;
+                const minutes = parseInt(document.getElementById("reading-minutes").value) || 0;
+                const time = convertTimeToDecimal(hours, minutes);
+                activities.push({ name: "독서", time });
+            }
+            if (document.getElementById("hobby").checked) {
+                const hours = parseInt(document.getElementById("hobby-hours").value) || 0;
+                const minutes = parseInt(document.getElementById("hobby-minutes").value) || 0;
+                const time = convertTimeToDecimal(hours, minutes);
+                activities.push({ name: "취미", time });
+            }
+
+            if (activities.some(act => act.time === 0)) {
+                alert("0시간 0분인 항목은 저장되지 않습니다.");
+                return;
+            }
+
+            const response = await fetch("/save-activity", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ uid, date, activities }),
+            });
+
+            if (response.ok) {
+                alert("활동이 저장되었습니다.");
+                window.close();
+                window.opener.location.reload();
+            } else {
+                alert("활동 저장에 실패했습니다.");
+            }
         }
-      }
+
+        function convertTimeToDecimal(hours, minutes) {
+            const decimalTime = parseFloat(hours) + (parseInt(minutes) / 60).toFixed(2);
+            switch (parseInt(minutes)) {
+                case 5: return (parseFloat(hours) + 0.08).toFixed(2);
+                case 10: return (parseFloat(hours) + 0.17).toFixed(2);
+                case 15: return (parseFloat(hours) + 0.25).toFixed(2);
+                case 20: return (parseFloat(hours) + 0.34).toFixed(2);
+                case 25: return (parseFloat(hours) + 0.42).toFixed(2);
+                case 30: return (parseFloat(hours) + 0.5).toFixed(2);
+                case 35: return (parseFloat(hours) + 0.58).toFixed(2);
+                case 40: return (parseFloat(hours) + 0.67).toFixed(2);
+                case 45: return (parseFloat(hours) + 0.75).toFixed(2);
+                case 50: return (parseFloat(hours) + 0.84).toFixed(2);
+                case 55: return (parseFloat(hours) + 0.92).toFixed(2);
+                default: return parseFloat(hours).toFixed(2);
+            }
+        }
+
+        function convertDecimalToTime(decimal) {
+            const hours = Math.floor(decimal);
+            const decimalPart = (decimal - hours).toFixed(2);
+            let minutes = 0;
+
+            if (decimalPart == 0.08) minutes = 5;
+            else if (decimalPart == 0.17) minutes = 10;
+            else if (decimalPart == 0.25) minutes = 15;
+            else if (decimalPart == 0.34) minutes = 20;
+            else if (decimalPart == 0.42) minutes = 25;
+            else if (decimalPart == 0.5) minutes = 30;
+            else if (decimalPart == 0.58) minutes = 35;
+            else if (decimalPart == 0.67) minutes = 40;
+            else if (decimalPart == 0.75) minutes = 45;
+            else if (decimalPart == 0.84) minutes = 50;
+            else if (decimalPart == 0.92) minutes = 55;
+
+            return `${hours}시간 ${minutes}분`;
+        }
+
+        // 페이지 로드 시 활동 정보 불러오기
+        document.addEventListener("DOMContentLoaded", loadActivities);
     </script>
   </body>
 </html>

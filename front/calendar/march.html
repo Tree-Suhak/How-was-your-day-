@@ -25,20 +25,20 @@
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 2px; /* 날짜 간격을 조정합니다 */
+            gap: 2px; /* 날짜 간격 */
         }
         .calendar-day,
         .font-bold {
             padding: 10px;
             border: 1px solid black;
-            height: 100px; /* 각 칸의 높이를 넓히기 위해 height 속성을 추가합니다 */
+            height: 100px; /* 칸 높이 */
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
         }
         .font {
             padding: 10px;
-            height: 80px; /* 각 칸의 높이를 넓히기 위해 height 속성을 추가합니다 */
+            height: 80px;
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
@@ -53,7 +53,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 60px; /* 제목의 높이를 맞추기 위해 height 속성을 추가합니다 */
+            height: 60px; /* 제목 높이 */
         }
         .title {
             text-align: center;
@@ -62,7 +62,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 10px; /* 아래에 여백 추가 */
+            margin-bottom: 10px; /* 아래 여백 크기 */
         }
         .button-row {
             display: flex;
@@ -70,7 +70,7 @@
             margin-bottom: 20px;
         }
         .button-row button {
-            background-color: #32cd32; /* 귀여운 녹색 */
+            background-color: #32cd32;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -100,17 +100,21 @@
         <div class="month-container">
             <h2 class="text-2xl font">March 2024</h2>
         </div>
-        <!-- 추가된 기능 버튼들 -->
+        <!-- 기능 버튼 -->
         <div class="button-row">
             <button onclick="location.href='../diary.html'">일기</button>
+            <button onclick="location.href='../workout_goal.html'" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">이번 주 목표</button>
             <button onclick="location.href='../daily-record-work-out.html'">활동 기록</button>
             <button onclick="location.href='../choose-the-list.html'">심리검사</button>
             <button onclick="location.href='../daily-record-feeling.html'">오늘의 하루 이모티콘</button>
+            <button onclick="location.href='../month_feeling.html'">이번 달의 기분</button>
+            <button onclick="location.href='../community.html'">커뮤니티</button>
+            <button onclick="location.href='../test_alert.html'">검사 위험 설정</button>
         </div>
         <div class="flex justify-between items-center mb-4 no-border">
-            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">February</button>
-            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">April</button>
-        </div>        
+            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">September</button>
+            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">November</button>
+        </div>
         <div class="calendar-grid text-center calendar-header">
             <div class="font-bold sunday">Sun</div>
             <div class="font-bold">Mon</div>
@@ -120,14 +124,14 @@
             <div class="font-bold">Fri</div>
             <div class="font-bold saturday">Sat</div>
 
-            <!-- 전 달의 일부분 -->
+            <!-- 전 달 -->
             <div class="calendar-day prev-month sunday" data-date="25">25</div>
             <div class="calendar-day prev-month" data-date="26">26</div>
             <div class="calendar-day prev-month" data-date="27">27</div>
             <div class="calendar-day prev-month" data-date="28">28</div>
             <div class="calendar-day prev-month" data-date="29">29</div>
 
-            <!-- 이번달 부분-->
+            <!-- 이번달 -->
             <div class="calendar-day" data-date="1">1</div>
             <div class="calendar-day saturday" data-date="2">2</div>
             <div class="calendar-day sunday" data-date="3">3</div>
@@ -159,7 +163,69 @@
             <div class="calendar-day" data-date="29">29</div>
             <div class="calendar-day saturday" data-date="30">30</div>
             <div class="calendar-day sunday" data-date="31">31</div>
+            </div>
+        <!-- 전문가 연결 -->
+            <div id="alert-message-container"></div>
+
+            <div class="text-center mt-6">
+            <a href="https://www.example.com/contact-expert" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">전문가와 상담하기</a>
         </div>
     </div>
+
+    <script>
+        async function checkForAlerts() {
+            const response = await fetch('/get-alert-settings');
+            const settings = await response.json();
+
+            const uid = localStorage.getItem('uid');
+            const responseTests = await fetch(`/get-psychological-tests?uid=${uid}&year=${new Date().getFullYear()}&month=${new Date().getMonth() + 1}`);
+            const testData = await responseTests.json();
+
+            const recentTests = testData.filter(test => {
+                const testDate = new Date(test.날짜);
+                const currentDate = new Date();
+                const timeDifference = Math.abs(currentDate - testDate);
+                const dayDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+                return dayDifference <= 14;
+            });
+
+            let phqCount = 0;
+            let gadCount = 0;
+            let cesCount = 0;
+            let pssCount = 0;
+
+            recentTests.forEach(test => {
+                if (test.PHQ_9점수 > 9) phqCount++;
+                if (test.GAD_7점수 > 7) gadCount++;
+                if (test.통합적_한국판_우울증_척도_점수 > 15) cesCount++;
+                if (test.한국형_스트레스_자가척도_점수 > 10) pssCount++;
+            });
+
+            let alertMessage = '';
+            if (phqCount >= settings.phqThreshold) {
+                alertMessage += '우울 주의! 상담 혹은 전문가의 도움 필요!\n';
+            }
+            if (gadCount >= settings.gadThreshold) {
+                alertMessage += '불안 주의! 상담 혹은 전문가의 도움 필요!\n';
+            }
+            if (cesCount >= settings.cesThreshold) {
+                alertMessage += '우울 주의! 상담 혹은 전문가의 도움 필요!\n';
+            }
+            if (pssCount >= settings.pssThreshold) {
+                alertMessage += '스트레스 주의! 상담 혹은 전문가의 도움 필요!\n';
+            }
+
+            if (alertMessage) {
+                const alertContainer = document.createElement('div');
+                alertContainer.className = 'alert-message';
+                alertContainer.textContent = alertMessage;
+
+                const calendarContainer = document.getElementById('alert-message-container');
+                calendarContainer.appendChild(alertContainer);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', checkForAlerts);
+    </script>
 </body>
 </html>

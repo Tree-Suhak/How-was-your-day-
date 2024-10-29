@@ -102,6 +102,7 @@ function loadCalendar(month = null) {
         })
         .then((data) => {
             document.getElementById("calendar").innerHTML = data;
+            loadEmotions(currentYear, currentMonth);  // 이 부분에서 감정 데이터를 불러옴
             loadActivities(currentYear, currentMonth);
             loadPsychologicalTests(currentYear, currentMonth);
             attachMonthButtons(currentMonth);
@@ -110,6 +111,57 @@ function loadCalendar(month = null) {
             console.error("Error loading the calendar:", error);
         });
 }
+
+function loadEmotions(year, month) {
+    const uid = localStorage.getItem("uid");
+
+    // 한국어 감정을 영어로 변환하는 매핑 객체
+    const emotionMap = {
+        "즐거움": "joy",
+        "평온": "calmness",
+        "행복": "happiness",
+        "사랑": "love",
+        "분노": "anger",
+        "불안": "anxiety",
+        "슬픔": "sadness",
+        "우울": "depression",
+        "외로움": "loneliness",
+        "절망": "despair",
+        "짜증": "annoyance",
+        "피곤": "tiredness",
+        "허무함": "emptiness"
+    };
+
+    fetch(`/get-emotions?year=${year}&month=${month}&uid=${uid}`)
+        .then((response) => response.json())
+        .then((emotions) => {
+            emotions.forEach((emotion) => {
+                const date = new Date(emotion.날짜);
+                const day = date.getDate();
+                const calendarDay = document.querySelector(
+                    `.calendar-day[data-date="${day}"]`
+                );
+                
+                if (calendarDay) {
+                    const emojiName = emotionMap[emotion.EMOJI] || 'default';  // 감정을 영어로 변환, 없으면 'default'
+
+                    const emojiElement = document.createElement("img");
+                    emojiElement.src = `../emoji/${emojiName}.png`;  // 변환된 영어 감정명으로 이미지 경로 설정
+                    emojiElement.style.width = "20px";  // 작은 크기로 설정
+                    emojiElement.style.height = "20px";
+                    emojiElement.style.position = "absolute";
+                    emojiElement.style.top = "5px";
+                    emojiElement.style.right = "5px";
+                    calendarDay.style.position = "relative";  // 부모 요소의 위치를 상대적으로 설정
+                    calendarDay.appendChild(emojiElement);  // 이모티콘을 달력에 추가
+                }
+            });
+        })
+        .catch((error) => {
+            console.error("Error loading emotions:", error);
+        });
+}
+
 
 function loadActivities(year, month) {
     const uid = localStorage.getItem("uid"); // 로컬 스토리지에서 UID 가져오기

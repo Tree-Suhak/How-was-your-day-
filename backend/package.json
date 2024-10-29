@@ -1,0 +1,12 @@
+{
+  "name": "how-was-your-day",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "hi",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

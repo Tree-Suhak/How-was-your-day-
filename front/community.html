@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Board</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto py-6">
+        <header class="text-center">
+            <h1 class="text-3xl font-bold">커뮤니티</h1>
+            <button onclick="location.href='create-post.html'" class="bg-blue-500 text-white py-2 px-4 rounded mt-4">글 작성하기</button>
+        </header>
+
+        <main class="mt-8">
+            <div id="posts" class="space-y-4">
+                <!-- 여기에 게시글 목록이 동적으로 추가됩니다 -->
+            </div>
+        </main>
+    </div>
+
+    <script src="community.js"></script>
+</body>
+</html>
