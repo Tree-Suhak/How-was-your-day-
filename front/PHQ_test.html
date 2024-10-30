@@ -12,6 +12,9 @@
   <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-2xl mx-auto">
+        <div class="title-container">
+          <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+      </div>
         <h1 class="text-center text-2xl font-bold mb-6">우울 자가진단</h1>
         <p class="text-center mb-4">
           지난 2주일동안 당신은 다음의 문제들로 인해서 얼마나 자주 방해를
@@ -146,13 +149,18 @@
         const form = document.getElementById("phq9-form");
         const formData = new FormData(form);
         let score = 0;
+        let unanswered = false;
+  
         for (let value of formData.values()) {
           score += parseInt(value, 10);
         }
-
+  
+        if (unanswered) {
+        alert('모든 문항에 답해주세요.'); }
+  
         const date = new Date().toISOString().split("T")[0];
         const uid = localStorage.getItem("uid");
-
+  
         const response = await fetch("/save-test-result", {
           method: "POST",
           headers: {
@@ -160,15 +168,19 @@
           },
           body: JSON.stringify({ uid, date, testType: "PHQ_9점수", score }),
         });
-
+  
         if (response.ok) {
-          alert("검사 결과가 저장되었습니다.");
-          window.close();
-          window.opener.location.reload();
+        alert("검사 결과가 저장되었습니다.");
+        window.location.href = 'main.html';
+        // window.opener가 null이 아닌 경우에만 부모 창을 새로고침
+        if (window.opener && !window.opener.closed) {
+        window.opener.location.reload();
+         }
         } else {
-          const result = await response.json();
+         const result = await response.json();
           alert(result.message || "검사 결과 저장에 실패했습니다.");
         }
+  
       }
     </script>
   </body>

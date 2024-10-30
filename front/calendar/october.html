@@ -90,16 +90,31 @@
         .calendar-header .saturday {
             color: blue;
         }
+        #goal-progress-bar {
+  background-color: #d3d3d3;
+}
+
+#goal-progress {
+  background-color: #32cd32;
+  height: 100%;
+}
     </style>
 </head>
 <body class="bg-white text-gray-800">
     <div class="max-w-4xl mx-auto py-12">
         <div class="title-container">
-            <h1 class="text-4xl font title">How was your day?</h1>
+            <h3 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h3>
         </div>
         <div class="month-container">
             <h2 class="text-2xl font">October 2024</h2>
         </div>
+        <div id="goal-progress-container" class="w-1/2 float-right">
+            <h2>이번주 목표 달성도 : <span id="achievement-percentage">0%</span></h2>
+            <div id="goal-progress-bar" class="h-4 bg-gray-300 w-full">
+              <div id="goal-progress" class="h-4 bg-green-500" style="width: 0%"></div>
+            </div>
+        </div>
+        <h2 class="text-2xl font"></h2>
         <!-- 기능 버튼 -->
         <div class="button-row">
             <button onclick="location.href='../diary.html'">일기</button>
@@ -107,8 +122,7 @@
             <button onclick="location.href='../daily-record-work-out.html'">활동 기록</button>
             <button onclick="location.href='../choose-the-list.html'">심리검사</button>
             <button onclick="location.href='../daily-record-feeling.html'">오늘의 하루 이모티콘</button>
-            <button onclick="location.href='../month_feeling.html'">이번 달의 기분</button>
-            <button onclick="location.href='../community.html'">커뮤니티</button>
+            <button onclick="location.href='../month_feeling.html?month=10'">이달의 기분</button>
             <button onclick="location.href='../test_alert.html'">검사 위험 설정</button>
         </div>
         <div class="flex justify-between items-center mb-4 no-border">
@@ -125,8 +139,8 @@
             <div class="font-bold saturday">Sat</div>
 
             <!-- 전 달 -->
-            <div class="calendar-day prev-month sunday" data-date="29">29</div>
-            <div class="calendar-day prev-month" data-date="30">30</div>
+            <div class="calendar-day prev-month sunday" >29</div>
+            <div class="calendar-day prev-month" >30</div>
 
             <!-- 이번달 -->
             <div class="calendar-day" data-date="1">1</div>
@@ -163,10 +177,10 @@
             </div>
         <!-- 전문가 연결 -->
             <div id="alert-message-container"></div>
-
-            <div class="text-center mt-6">
-            <a href="https://www.example.com/contact-expert" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">전문가와 상담하기</a>
-        </div>
+            <div id="danger-message" class="hidden bg-red-200 text-red-800 p-4 mt-4">
+                우울 위험 감지되었습니다. 당신의 주의가 필요합니다. 필요하시다면, 전문기관과 주변의 도움을 받아보세요.
+              </div>
+              
     </div>
 
     <script>

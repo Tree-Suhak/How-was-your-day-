@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Daily Record Calendar - October 2024</title>
+    <title>Interactive Daily Record Calendar - December 2024</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .calendar-day:hover {
@@ -25,20 +25,20 @@
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 2px; /* 날짜 간격을 조정합니다 */
+            gap: 2px; /* 날짜 간격 */
         }
         .calendar-day,
         .font-bold {
             padding: 10px;
             border: 1px solid black;
-            height: 100px; /* 각 칸의 높이를 넓히기 위해 height 속성을 추가합니다 */
+            height: 100px; /* 칸 높이 */
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
         }
         .font {
             padding: 10px;
-            height: 80px; /* 각 칸의 높이를 넓히기 위해 height 속성을 추가합니다 */
+            height: 80px;
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
@@ -53,7 +53,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 60px; /* 제목의 높이를 맞추기 위해 height 속성을 추가합니다 */
+            height: 60px; /* 제목 높이 */
         }
         .title {
             text-align: center;
@@ -62,7 +62,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 10px; /* 아래에 여백 추가 */
+            margin-bottom: 10px; /* 아래 여백 크기 */
         }
         .button-row {
             display: flex;
@@ -70,7 +70,7 @@
             margin-bottom: 20px;
         }
         .button-row button {
-            background-color: #32cd32; /* 귀여운 녹색 */
+            background-color: #32cd32;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -95,25 +95,25 @@
 <body class="bg-white text-gray-800">
     <div class="max-w-4xl mx-auto py-12">
         <div class="title-container">
-            <h1 class="text-4xl font title">How was your day?</h1>
+            <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+
         </div>
         <div class="month-container">
-            <h2 class="text-2xl font">October 2024</h2>
+            <h2 class="text-2xl font">December 2024</h2>
         </div>
-        <!-- 추가된 기능 버튼들 -->
+        <!-- 기능 버튼 -->
         <div class="button-row">
             <button onclick="location.href='../diary.html'">일기</button>
             <button onclick="location.href='../workout_goal.html'" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">이번 주 목표</button>
             <button onclick="location.href='../daily-record-work-out.html'">활동 기록</button>
             <button onclick="location.href='../choose-the-list.html'">심리검사</button>
             <button onclick="location.href='../daily-record-feeling.html'">오늘의 하루 이모티콘</button>
-            <button onclick="location.href='../month_feeling.html'">이번 달의 기분</button>
-            <button onclick="location.href='../community.html'">커뮤니티</button>
+            <button onclick="location.href='../month_feeling.html?month=12'">이달의 기분</button>
             <button onclick="location.href='../test_alert.html'">검사 위험 설정</button>
         </div>
         <div class="flex justify-between items-center mb-4 no-border">
-            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">September</button>
-            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">November</button>
+            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">November</button>
+            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">January</button>
         </div>
         <div class="calendar-grid text-center calendar-header">
             <div class="font-bold sunday">Sun</div>
@@ -124,10 +124,10 @@
             <div class="font-bold">Fri</div>
             <div class="font-bold saturday">Sat</div>
 
-            <!-- 전 달의 일부분 -->
+            <!-- 전 달 -->
 
 
-            <!-- 이번달 부분-->
+            <!-- 이번달-->
             <div class="calendar-day sunday" data-date="1">1</div>
             <div class="calendar-day" data-date="2">2</div>
             <div class="calendar-day" data-date="3">3</div>
@@ -159,13 +159,9 @@
             <div class="calendar-day sunday" data-date="29">29</div>
             <div class="calendar-day" data-date="30">30</div>
             <div class="calendar-day" data-date="31">31</div>
-        </div>
-        <!-- 전문가 연결 버튼 -->
-        <div id="alert-message-container"></div>
-
-        <div class="text-center mt-6">
-            <a href="https://www.example.com/contact-expert" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">전문가와 상담하기</a>
-        </div>
+            </div>
+        <!-- 전문가 연결 -->
+            <div id="alert-message-container"></div>
     </div>
 
     <script>

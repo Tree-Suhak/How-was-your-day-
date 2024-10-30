@@ -95,7 +95,8 @@
 <body class="bg-white text-gray-800">
     <div class="max-w-4xl mx-auto py-12">
         <div class="title-container">
-            <h1 class="text-4xl font title">How was your day?</h1>
+            <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+
         </div>
         <div class="month-container">
             <h2 class="text-2xl font">July 2024</h2>
@@ -107,13 +108,12 @@
             <button onclick="location.href='../daily-record-work-out.html'">활동 기록</button>
             <button onclick="location.href='../choose-the-list.html'">심리검사</button>
             <button onclick="location.href='../daily-record-feeling.html'">오늘의 하루 이모티콘</button>
-            <button onclick="location.href='../month_feeling.html'">이번 달의 기분</button>
-            <button onclick="location.href='../community.html'">커뮤니티</button>
+            <button onclick="location.href='../month_feeling.html?month=7'">이달의 기분</button>
             <button onclick="location.href='../test_alert.html'">검사 위험 설정</button>
         </div>
         <div class="flex justify-between items-center mb-4 no-border">
-            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">September</button>
-            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">November</button>
+            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">June</button>
+            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">August</button>
         </div>
         <div class="calendar-grid text-center calendar-header">
             <div class="font-bold sunday">Sun</div>
@@ -125,7 +125,7 @@
             <div class="font-bold saturday">Sat</div>
 
             <!-- 전 달 -->
-            <div class="calendar-day prev-month sunday" data-date="30">30</div>
+            <div class="calendar-day prev-month sunday">30</div>
 
             <!-- 이번달 -->
             <div class="calendar-day" data-date="1">1</div>
@@ -162,10 +162,6 @@
             </div>
         <!-- 전문가 연결 -->
             <div id="alert-message-container"></div>
-
-            <div class="text-center mt-6">
-            <a href="https://www.example.com/contact-expert" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">전문가와 상담하기</a>
-        </div>
     </div>
 
     <script>

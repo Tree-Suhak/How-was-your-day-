@@ -10,6 +10,9 @@
     />
   </head>
   <body class="bg-gray-100">
+    <div class="title-container">
+      <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+  </div>
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-2xl mx-auto">
         <h1 class="text-center text-2xl font-bold mb-6">통합적 한국판 우울증 척도(CES-D)</h1>
@@ -252,6 +255,62 @@
       </div>
     </div>
 
-    <script src="CES_test.js"></script>
+    <script>
+      async function submitCESD() {
+        const form = document.getElementById("cesd-form");
+        const formData = new FormData(form);
+        let score = 0;
+        let unanswered = false;
+    
+        // PSS 문항들에 대한 로직 수정
+        let index = 0;
+        for (let value of formData.values()) {
+          if (value === null || value === "") {
+            unanswered = true;
+            break;
+          }
+    
+        // 4번, 8번, 12번, 16번 문항에 대한 특수 점수 계산
+          if ([4, 8, 12, 16].includes(index)) {
+            if (value === "0") score += 3;
+            else if (value === "1") score += 2;
+            else if (value === "2") score += 1;
+            else if (value === "3") score += 0;
+          } else {
+            score += parseInt(value, 10); // 점수를 숫자로 변환하여 누적
+          }
+    
+          index++; // 인덱스 증가
+        }
+    
+        if (unanswered) {
+          alert("모든 문항에 답해주세요.");
+          return; // 미응답 항목이 있을 경우 제출 중단
+        }
+    
+        const date = new Date().toISOString().split("T")[0];
+        const uid = localStorage.getItem("uid");
+    
+        const response = await fetch("/save-test-result", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ uid, date, testType: "통합적_한국판_우울증_척도_점수", score }),
+        });
+    
+        if (response.ok) {
+          alert("검사 결과가 저장되었습니다.");
+          window.location.href = "main.html";
+          if (window.opener && !window.opener.closed) {
+            window.opener.location.reload();
+          }
+        } else {
+          const result = await response.json();
+          alert(result.message || "검사 결과 저장에 실패했습니다.");
+        }
+      }
+    </script>
+    
   </body>
 </html>

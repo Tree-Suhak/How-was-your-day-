@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>이번 달의 기분</title>
+  <title>이달의 감정</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1, #description {
+      text-align: center; /* 제목과 설명을 가운데 정렬 */
+    }
+    #emotion-list {
+      margin: 20px auto; /* 리스트를 수평으로 가운데 정렬 */
+      max-width: 500px; /* 전체 너비 조절 */
+    }
     .emotion-item {
       display: flex;
       align-items: center;
@@ -15,14 +25,34 @@
       height: 50px;
       margin-right: 10px;
     }
-    .emotion-item span {
+    .emotion-details {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .emotion-label {
+      width: 100px;
       font-size: 18px;
       font-weight: bold;
+      margin-right: 10px;
+    }
+    .bar {
+      height: 20px;
+      background-color: #4caf50; /* 막대 그래프 색상 */
+      margin-left: 10px;
+    }
+    .percentage {
+      margin-left: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <h1>이번 달의 감정 빈도</h1>
+  <div class="title-container">
+    <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+</div>
+  <h1 id="title">이달의 감정 (N월)</h1>
+  <p id="description" style="margin-top: 10px; font-size: 16px;">이번 달 가장 많이 느끼신 감정을 알려드릴게요</p>
   <div id="emotion-list"></div>
 
   <script src="month_feeling.js"></script>

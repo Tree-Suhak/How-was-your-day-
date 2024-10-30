@@ -9,10 +9,13 @@
 <body class="bg-gray-100">
     <div class="container mx-auto py-6">
         <header class="text-center mb-8">
+            <div class="title-container">
+                <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+            </div>
             <h1 class="text-3xl font-bold">내 일기장</h1>
             <button onclick="location.href='diary_record.html'" class="bg-blue-500 text-white py-2 px-4 rounded mt-4">일기 작성하기</button>
-            <button id="delete-button" class="bg-red-500 text-white py-2 px-4 rounded mt-4">일기 삭제</button>
-            <button id="edit-button" class="bg-yellow-500 text-white py-2 px-4 rounded mt-4">일기 수정</button>
+            <button id="edit-button" class="bg-blue-500 text-white py-2 px-4 rounded mt-4">일기 수정</button>
+            <button id="delete-button" class="bg-blue-500 text-white py-2 px-4 rounded mt-4">일기 삭제</button>
         </header>
         
 
@@ -27,7 +30,7 @@
 
         <main class="mt-8">
             <div id="entries" class="space-y-4">
-                <!-- 여기에 일기 목록이 동적으로 추가됩니다 -->
+                <!-- 일기 목록 동적 추가 -->
             </div>
         </main>
     </div>

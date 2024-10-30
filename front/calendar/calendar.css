@@ -1,0 +1,84 @@
+.calendar-day:hover {
+    background-color: #f3f4f6;
+    cursor: pointer;
+}
+.calendar-day.sunday {
+    color: red;
+}
+.calendar-day.saturday {
+    color: blue;
+}
+.calendar-day.prev-month.sunday {
+    color: rgba(255, 0, 0, 0.5);
+}
+.calendar-day.prev-month.saturday {
+    color: rgba(0, 0, 255, 0.5);
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px; /* 날짜 간격 */
+}
+.calendar-day,
+.font-bold {
+    padding: 10px;
+    border: 1px solid black;
+    height: 100px; /* 칸 높이 */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.font {
+    padding: 10px;
+    height: 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* 제목 높이 */
+}
+.title {
+    text-align: center;
+}
+.month-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* 아래 여백 크기 */
+}
+.button-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.button-row button {
+    background-color: #32cd32;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.button-row button:hover {
+    background-color: #2e8b57; /* 버튼 호버 색상 */
+}
+.calendar-header .font-bold {
+    color: black;
+}
+.calendar-header .sunday {
+    color: red;
+}
+.calendar-header .saturday {
+    color: blue;
+}

@@ -1,6 +1,6 @@
 {
   "phqThreshold": "1",
-  "gadThreshold": "2",
-  "cesThreshold": "4",
+  "gadThreshold": "3",
+  "cesThreshold": "2",
   "pssThreshold": "2"
 }

@@ -4,39 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Activity Tracking for mental state</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   </head>
   <body class="bg-gray-100">
     <div class="min-h-screen flex flex-col justify-between">
       <header class="text-center p-6">
+        <div class="title-container">
+          <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+      </div>
         <h1 class="text-2xl font-bold">
           오늘, 당신은 당신을 위해 무엇을 하였나요?
         </h1>
+        <div class="my-6"></div>
+        <h4 class="text-1xl">
+          당신이 한 활동을 체크하고 활동한 시간을 입력 후 저장버튼을 눌러주세요. 하나의 활동은 하루에 1개만 저장됩니다.
+        </h4>
+        <h4 class="text-1xl">
+          수정을 원하신다면, 활동을 체크하고 시간을 입력후 저장 시 수정됩니다.
+        </h4>
+        <h4 class="text-1xl">
+          00시간 00분으로 설정할 경우 해당 활동의 내용은 저장되지 않습니다.
+        </h4>
       </header>
 
       <main class="flex-grow container mx-auto px-4">
         <form id="activity-form">
           <div class="space-y-6">
+            <!-- 운동 섹션 -->
             <div class="flex items-center">
-              <input
-                type="checkbox"
-                id="exercise"
-                name="activity"
-                value="운동"
-                class="mr-2"
-              />
+              <input type="checkbox" id="exercise" name="activity" value="운동" class="mr-2" />
               <label for="exercise" class="flex-grow">운동</label>
-              <input
-                type="number"
-                id="exercise-hours"
-                placeholder="시간"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-              />
-              <select id="exercise-minutes" class="flex-none w-24 p-2 border rounded">
+              <select id="exercise-hours" class="flex-none w-20 p-2 border rounded">
+                <option value="0">0시간</option>
+                <option value="1">1시간</option>
+                <option value="2">2시간</option>
+                <option value="3">3시간</option>
+                <option value="4">4시간</option>
+                <option value="5">5시간</option>
+                <option value="6">6시간</option>
+                <option value="7">7시간</option>
+                <option value="8">8시간</option>
+                <option value="9">9시간</option>
+                <option value="10">10시간</option>
+                <option value="11">11시간</option>
+                <option value="12">12시간</option>
+
+              </select>
+              <select id="exercise-minutes" class="flex-none w-24 p-2 border rounded ml-2">
                 <option value="0">0분</option>
                 <option value="5">5분</option>
                 <option value="10">10분</option>
@@ -52,23 +66,27 @@
               </select>
             </div>
 
+            <!-- 명상 섹션 -->
             <div class="flex items-center">
-              <input
-                type="checkbox"
-                id="meditation"
-                name="activity"
-                value="명상"
-                class="mr-2"
-              />
+              <input type="checkbox" id="meditation" name="activity" value="명상" class="mr-2" />
               <label for="meditation" class="flex-grow">명상</label>
-              <input
-                type="number"
-                id="meditation-hours"
-                placeholder="시간"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-              />
-              <select id="meditation-minutes" class="flex-none w-24 p-2 border rounded">
+              <select id="meditation-hours" class="flex-none w-20 p-2 border rounded">
+                <option value="0">0시간</option>
+                <option value="1">1시간</option>
+                <option value="2">2시간</option>
+                <option value="3">3시간</option>
+                <option value="4">4시간</option>
+                <option value="5">5시간</option>
+                <option value="6">6시간</option>
+                <option value="7">7시간</option>
+                <option value="8">8시간</option>
+                <option value="9">9시간</option>
+                <option value="10">10시간</option>
+                <option value="11">11시간</option>
+                <option value="12">12시간</option>
+
+              </select>
+              <select id="meditation-minutes" class="flex-none w-24 p-2 border rounded ml-2">
                 <option value="0">0분</option>
                 <option value="5">5분</option>
                 <option value="10">10분</option>
@@ -84,23 +102,27 @@
               </select>
             </div>
 
+            <!-- 독서 섹션 -->
             <div class="flex items-center">
-              <input
-                type="checkbox"
-                id="reading"
-                name="activity"
-                value="독서"
-                class="mr-2"
-              />
+              <input type="checkbox" id="reading" name="activity" value="독서" class="mr-2" />
               <label for="reading" class="flex-grow">독서</label>
-              <input
-                type="number"
-                id="reading-hours"
-                placeholder="시간"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-              />
-              <select id="reading-minutes" class="flex-none w-24 p-2 border rounded">
+              <select id="reading-hours" class="flex-none w-20 p-2 border rounded">
+                <option value="0">0시간</option>
+                <option value="1">1시간</option>
+                <option value="2">2시간</option>
+                <option value="3">3시간</option>
+                <option value="4">4시간</option>
+                <option value="5">5시간</option>
+                <option value="6">6시간</option>
+                <option value="7">7시간</option>
+                <option value="8">8시간</option>
+                <option value="9">9시간</option>
+                <option value="10">10시간</option>
+                <option value="11">11시간</option>
+                <option value="12">12시간</option>
+
+              </select>
+              <select id="reading-minutes" class="flex-none w-24 p-2 border rounded ml-2">
                 <option value="0">0분</option>
                 <option value="5">5분</option>
                 <option value="10">10분</option>
@@ -116,23 +138,27 @@
               </select>
             </div>
 
+            <!-- 취미 섹션 -->
             <div class="flex items-center">
-              <input
-                type="checkbox"
-                id="hobby"
-                name="activity"
-                value="취미"
-                class="mr-2"
-              />
+              <input type="checkbox" id="hobby" name="activity" value="취미" class="mr-2" />
               <label for="hobby" class="flex-grow">취미</label>
-              <input
-                type="number"
-                id="hobby-hours"
-                placeholder="시간"
-                class="flex-none w-20 p-2 border rounded"
-                min="0"
-              />
-              <select id="hobby-minutes" class="flex-none w-24 p-2 border rounded">
+              <select id="hobby-hours" class="flex-none w-20 p-2 border rounded">
+                <option value="0">0시간</option>
+                <option value="1">1시간</option>
+                <option value="2">2시간</option>
+                <option value="3">3시간</option>
+                <option value="4">4시간</option>
+                <option value="5">5시간</option>
+                <option value="6">6시간</option>
+                <option value="7">7시간</option>
+                <option value="8">8시간</option>
+                <option value="9">9시간</option>
+                <option value="10">10시간</option>
+                <option value="11">11시간</option>
+                <option value="12">12시간</option>
+
+              </select>
+              <select id="hobby-minutes" class="flex-none w-24 p-2 border rounded ml-2">
                 <option value="0">0분</option>
                 <option value="5">5분</option>
                 <option value="10">10분</option>
@@ -150,15 +176,28 @@
           </div>
 
           <div class="text-center mt-6">
-            <button
-              type="button"
-              onclick="submitActivity()"
-              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
+            <button type="button" onclick="submitActivity()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
               저장
             </button>
           </div>
         </form>
+
+        <div class="mt-10 p-4 bg-white rounded shadow-lg">
+          <h2 class="text-xl font-bold mb-4">운동, 명상, 독서, 취미의 긍정적 영향</h2>
+          <p class="mb-4">
+            <strong>운동:</strong> 운동은 신체 활동을 통해 엔돌핀, 도파민과 같은 긍정적인 기분을 촉진하는 호르몬이 분비되며, 이는 스트레스 해소와 우울증 증상 완화에 매우 효과적입니다. 규칙적인 운동은 자존감을 높이고, 신체적 피로를 줄여 정신적으로 활력을 제공해줍니다. 땀을 흘리며 불안감을 낮추고, 긴장 완화에도 도움을 줍니다.
+          </p>
+          <p class="mb-4">
+            <strong>명상:</strong> 명상은 마음을 고요하게 하고 심호흡을 통해 깊은 이완 상태를 제공합니다. 이러한 상태는 마음의 평온함을 가져오며, 불안감을 줄이고, 스트레스를 해소하는 데 중요한 역할을 합니다. 명상을 통해 집중력을 향상시키고 부정적인 생각을 조절하는 데 도움이 됩니다.
+          </p>
+          <p class="mb-4">
+            <strong>독서:</strong> 독서는 새로운 시각을 제공하고 일상에서 벗어나 다양한 이야기를 통해 마음의 안정을 찾을 수 있게 합니다. 책을 읽으며 몰입하는 시간은 뇌를 자극하면서도 마음을 차분하게 만들어 주며, 스트레스 해소에 효과적입니다. 독서는 지식의 확장뿐만 아니라 심리적 안정에도 기여합니다.
+          </p>
+          <p class="mb-4">
+            <strong>취미:</strong> 취미 활동은 개인의 창의성을 발휘하고 자아 성취감을 느끼게 해줍니다. 또한, 즐거움을 통해 스트레스를 줄이고 일상에 활력을 더해 줍니다. 그림 그리기, 음악 감상, 요리와 같은 취미는 기분을 좋게 하고, 우울감에서 벗어날 수 있는 기회를 제공합니다.
+          </p>
+        </div>
+
       </main>
     </div>
     <script>
@@ -241,8 +280,7 @@
 
             if (response.ok) {
                 alert("활동이 저장되었습니다.");
-                window.close();
-                window.opener.location.reload();
+                window.location.href = 'main.html';
             } else {
                 alert("활동 저장에 실패했습니다.");
             }
@@ -286,7 +324,7 @@
             return `${hours}시간 ${minutes}분`;
         }
 
-        // 페이지 로드 시 활동 정보 불러오기
+        // 페이지 로드 시 활동 정보
         document.addEventListener("DOMContentLoaded", loadActivities);
     </script>
   </body>
