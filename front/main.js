@@ -366,15 +366,18 @@ async function showWeeklyGoalAchievement() {
 
 // 페이지 로드 시 위험 메시지 표시 함수
 async function checkDangerAlerts() {
-    const uid = localStorage.getItem("uid");    
+
+    const uid = localStorage.getItem("uid");
+    console.log(uid);
     if (!uid) return;
-  
+
     try {
-      // 1. 위험 설정 값 불러오기
+      // 위험 설정 값 불러오기
       const alertSettingsResponse = await fetch('/get-alert-settings');
       const alertSettings = await alertSettingsResponse.json();
+      
   
-      // 2. 최근 2주간 검사 결과 불러오기
+      // 최근 2주간 검사 결과 불러오기
       const testResultsResponse = await fetch(`/get-recent-test-results?uid=${uid}`);
       if (!testResultsResponse.ok) {
         console.error('Failed to fetch test results');
@@ -382,7 +385,7 @@ async function checkDangerAlerts() {
       }
       const testResults = await testResultsResponse.json();
   
-      // 3. 위험 횟수 계산: 초기화 후 수치 이상이면 1씩 증가
+      // 위험 횟수 계산: 초기화 후 수치 이상이면 1씩 증가
       const dangerCounts = {
         PHQ: 0,
         GAD: 0,
@@ -397,7 +400,7 @@ async function checkDangerAlerts() {
         if (result.한국형_스트레스_자가척도_점수 >= 20) dangerCounts.PSS++;
       });
   
-      // 4. 위험 기준과 비교하여 메시지 표시
+      // 위험 기준과 비교하여 메시지 표시
       if (
         (dangerCounts.PHQ >= alertSettings.PHQ) ||
         (dangerCounts.GAD >= alertSettings.GAD) ||
@@ -413,6 +416,20 @@ async function checkDangerAlerts() {
     }
   }
   
+  document.addEventListener('DOMContentLoaded', () => {
+    const uid = localStorage.getItem('uid');
+    console.log("Fetching recent test results with UID:", uid); // 여기에 UID가 표시되는지 확인
+
+    // UID가 제대로 불러와지지 않으면 경고 메시지
+    if (!uid) {
+        console.warn("UID가 설정되지 않았습니다.");
+        return;
+    }
+
+    // UID가 제대로 불러와졌다면 계속해서 로직 실행
+    checkDangerAlerts();
+});
+
   // 페이지 로드 시 실행
   document.addEventListener('DOMContentLoaded', () => {
     checkDangerAlerts();

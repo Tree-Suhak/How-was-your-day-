@@ -1,0 +1,293 @@
+.diary-main {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.diary-main .view {
+    height: 160px;
+    top: 0;
+    position: absolute;
+    width: 1440px;
+    left: 0;
+}
+
+.diary-main .view-2 {
+    height: 244px;
+    top: 160px;
+    position: absolute;
+    width: 1440px;
+    left: 0;
+}
+
+.diary-main .text-wrapper-9 {
+    top: 11px;
+    left: 45px;
+    color: #000000;
+    font-size: 28px;
+    line-height: 36.4px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.frame {
+    position: absolute;
+    width: 1440px;
+    height: auto;
+    top: 450px;
+    left: 0;
+    background-color: #7ab2d380;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.rectangle-2, .rectangle-3 {
+    width: 900px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.diary-main {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .diary-main .div {
+    background-color: #ffffff;
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+  }
+  
+  .diary-main .view {
+    height: 160px;
+    top: 0;
+    position: absolute;
+    width: 1440px;
+    left: 0;
+  }
+  
+  .diary-main .text-wrapper {
+    position: absolute;
+    top: 57px;
+    left: 28px;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 52.0px;
+    white-space: nowrap;
+  }
+  
+  .diary-main .text-wrapper-2 {
+    top: 65px;
+    left: 306px;
+    color: #000000;
+    font-size: 28px;
+    line-height: 36.4px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .text-wrapper-3 {
+    top: 65px;
+    left: 228px;
+    color: #000000;
+    font-size: 28px;
+    line-height: 36.4px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .text-wrapper-4 {
+    top: 65px;
+    left: 469px;
+    color: #000000;
+    font-size: 28px;
+    line-height: 36.4px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .text-wrapper-5 {
+    height: 26px;
+    top: 13px;
+    left: 1213px;
+    color: #00000080;
+    font-size: 20px;
+    text-align: center;
+    line-height: 26.0px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .text-wrapper-6 {
+    height: 26px;
+    top: 13px;
+    left: 1289px;
+    color: #00000080;
+    font-size: 20px;
+    text-align: center;
+    line-height: 26.0px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .image {
+    width: 1382px;
+    height: 2px;
+    top: 144px;
+    left: 29px;
+    position: absolute;
+    object-fit: cover;
+  }
+  
+  .diary-main .img {
+    width: 2px;
+    height: 70px;
+    top: 48px;
+    left: 200px;
+    position: absolute;
+    object-fit: cover;
+  }
+  
+  .diary-main .view-2 {
+    height: 244px;
+    top: 160px;
+    position: absolute;
+    width: 1440px;
+    left: 0;
+  }
+  
+  .diary-main .text-wrapper-7 {
+    top: 18px;
+    left: 498px;
+    color: #000000;
+    font-size: 40px;
+    line-height: 52.0px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .text-wrapper-8 {
+    top: 70px;
+    left: 543px;
+    color: #00000099;
+    font-size: 24px;
+    line-height: 31.2px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .overlap {
+    left: 620px;
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    top: 146px;
+    border-radius: 10px;
+  }
+  
+  .diary-main .rectangle {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    background-color: #7ab2d3;
+    border-radius: 10px;
+    opacity: 0.7;
+  }
+  
+  .diary-main .text-wrapper-9 {
+    top: 11px;
+    left: 40px;
+    color: #000000;
+    font-size: 28px;
+    line-height: 36.4px;
+    position: absolute;
+    font-family: "Castoro-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  
+  .diary-main .overlap-group {
+    left: 834px;
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    top: 146px;
+    border-radius: 10px;
+  }
+  
+  .diary-main .overlap-2 {
+    left: 398px;
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    top: 146px;
+    border-radius: 10px;
+  }
+  
+  .diary-main .frame {
+    position: absolute;
+    width: 1440px;
+    height: 1440px;
+    top: 453px;
+    left: 0;
+    background-color: #7ab2d380;
+  }
+  
+  .diary-main .rectangle-2 {
+    position: absolute;
+    width: 900px;
+    height: 200px;
+    top: 41px;
+    left: 245px;
+    background-color: #ffffff;
+    border-radius: 20px;
+  }
+  
+  .diary-main .rectangle-3 {
+    position: absolute;
+    width: 900px;
+    height: 200px;
+    top: 285px;
+    left: 245px;
+    background-color: #ffffff;
+    border-radius: 20px;
+  }
+  

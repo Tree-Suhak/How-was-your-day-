@@ -676,20 +676,28 @@ app.post('/save-alert-settings', (req, res) => {
   });
 });
 
+// 위험 설정 값 불러오기
 app.get('/get-alert-settings', (req, res) => {
-  console.log('Fetching recent test results with UID:', req.query.uid);
+  const { uid } = req.query;
+  console.log("Fetching alert settings with UID:", uid); // UID가 서버로 전달되었는지 확인
+
+  if (!uid) {
+    return res.status(400).json({ success: false, message: "UID가 제공되지 않았습니다." });
+  }
+
   const filePath = path.join(__dirname, '../data/alert_settings.json');
 
   fs.readFile(filePath, 'utf-8', (err, data) => {
-      if (err) {
-          console.error('Error loading alert settings:', err);
-          return res.status(500).json({ success: false, message: '설정 불러오기 실패' });
-      }
+    if (err) {
+      console.error('Error loading alert settings:', err);
+      return res.status(500).json({ success: false, message: '설정 불러오기 실패' });
+    }
 
-      const settings = JSON.parse(data);
-      res.json(settings);
+    const settings = JSON.parse(data);
+    res.json(settings);
   });
 });
+
 
 // 최근 2주간 검사 결과 가져오기
 app.get('/get-recent-test-results', (req, res) => {
