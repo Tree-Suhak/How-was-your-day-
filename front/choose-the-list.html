@@ -3,55 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Self-Assessment Tests</title>
+    <title>EmoCal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+        </style>
 </head>
-<body class="bg-gray-100">
+<body>
+    <div class="navbar">
+        <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+        <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+        <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+        <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+        <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+        <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+        <div class="divider"></div>
+    </div>
+    <h1 class="text-center text-2xl font-bold mb-2 px-8 py-6">마음 건강 자가 검사</h1>
+    <p class="text-center">
+        지금 내 마음은 어떤 상태일까요? 자가검진을 통해 마음 건강 상태를 점검해보아요. 
+    </p>
+    <p class="text-center mb-4">
+        걱정 마세요. 여기에 적힌 모든 것은 나 자신을 위한 기록일 뿐이에요.
+    </p>    <p class="text-center">
+        원하시는 테스트를  고르신 후 선택 버튼을 눌러주세요. 테스트에 소요되는 시간은 약 3~5분입니다.
+    </p>
     <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-[#C9E9D2] p-6 rounded-md" style="background-color: #C9E9D2 !important;">
         <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-            <div class="title-container">
-                <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-            </div>
-            <div>  '
-            </div>
             <div class="flex justify-between items-center mb-4">
-                <h1 class="text-xl font-bold">자가진단용 검사</h1>
-                <a href="test_helper.html" class="text-blue-500 hover:underline">도움말</a>
+                <h1 class="text-xl font-bold">자가진단검사 목록</h1>
+                <a href="test_helper.html" class="text-blue-500 hover:underline">검사 해석 방법</a>
             </div>
             <form id="testForm">
                 <div class="mb-4">
-                    <label class="flex items-center">
+                    <label class="flex items-center mb-1">
                         <input type="radio" name="test" value="PHQ" class="form-radio">
                         <span class="ml-2">우울증 위험도 검사(PHQ-9)</span>
                     </label>
+                    <p class="text-gray-600 text-sm mb-4">- PHQ : 우울의 정도를 측정해요. 점수에 따라 경미한 우울부터 심한 우울을 판별할 수 있어요.</p>
+
                 </div>
                 <div class="mb-4">
-                    <label class="flex items-center">
-                        <input type="radio" name="test" value="GAD" class="form-radio">
-                        <span class="ml-2">불안 증상 위험도 검사(GAD-7)</span>
-                    </label>
-                </div>
-                <div class="mb-4">
-                    <label class="flex items-center">
+                    <label class="flex items-center mb-1">
                         <input type="radio" name="test" value="CES" class="form-radio">
                         <span class="ml-2">통합적 한국판 우울증 척도(CES-D)</span>
                     </label>
+                    <p class="text-gray-600 text-sm mb-4">- CES : 우울의 정도를 측정해요. 한국인에 맞게 질문을 조금 수정했어요. 점수에 따라 우울의 정도를 판별할 수 있어요.</p>
                 </div>
+                <div class="mb-4">
+                    <label class="flex items-center mb-1">
+                        <input type="radio" name="test" value="GAD" class="form-radio">
+                        <span class="ml-2">불안 증상 위험도 검사(GAD-7)</span>
+                    </label>
+                    <p class="text-gray-600 text-sm mb-4">- GAD : 불안 증상의 정도를 측정해요. 점수가 높을수록 불안이 심하다는 의미에요.</p>
+
+                </div>
+
                 <div class="mb-6">
-                    <label class="flex items-center">
+                    <label class="flex items-center mb-1">
                         <input type="radio" name="test" value="PPS" class="form-radio">
                         <span class="ml-2">한국형 스트레스 자가척도(PSS)</span>
                     </label>
+                    <p class="text-gray-600 text-sm mb-4">- PSS : 스트레스 지각의 정도를 측정해요. 점수에 따라 자각도니 스트레스 정도를 의미해요.</p>        
                 </div>
-                <p class="text-gray-600 text-sm mb-4">- PHQ: 우울의 정도를 측정합니다. 점수에 따라 경미한 우울부터 심한 우울을 판별할 수 있습니다.</p>
-                <p class="text-gray-600 text-sm mb-4">- CES: 통합적 우울증 척도로 우울의 정도를 측정합니다. 점수에 따라 경미한 우울부터 심한 우울을 판별할 수 있습니다.</p>
-                <p class="text-gray-600 text-sm mb-4">- GAD: 불안 증상의 정도를 측정합니다. 점수가 높을수록 불안이 심함을 의미합니다.</p>
-                <p class="text-gray-600 text-sm mb-4">- PSS: 스트레스 지각의 정도를 측정합니다. 점수에 따라 지각된 스트레스 정도나냅니다. 40점 만점을 기준으로 본인의 지각된 스트레스 정도를 판단하면 됩니다.</p>        
-                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <div class="text-center">
+                <button type="submit" class="w-360 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     선택
                 </button>
+                </div>
             </form>
         </div>
+    </div>
     </div>
 
     <script>

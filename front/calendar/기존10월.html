@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Daily Record Calendar - October 2024</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .calendar-day:hover {
+        background-color: #f3f4f6;
+        cursor: pointer;
+      }
+      .calendar-day.sunday {
+        color: red;
+      }
+      .calendar-day.saturday {
+        color: blue;
+      }
+      .calendar-day.prev-month.sunday {
+        color: rgba(255, 0, 0, 0.5);
+      }
+      .calendar-day.prev-month.saturday {
+        color: rgba(0, 0, 255, 0.5);
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px; /* 날짜 간격 */
+      }
+      .calendar-day,
+      .font-bold {
+        padding: 10px;
+        border: 1px solid black;
+        height: 100px; /* 칸 높이 */
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .font {
+        padding: 10px;
+        height: 80px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+      }
+      .title-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px; /* 제목 높이 */
+      }
+      .title {
+        text-align: center;
+      }
+      .month-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px; /* 아래 여백 크기 */
+      }
+      .button-row {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+      .button-row button {
+        background-color: #32cd32;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .button-row button:hover {
+        background-color: #2e8b57; /* 버튼 호버 색상 */
+      }
+      .calendar-header .font-bold {
+        color: black;
+      }
+      .calendar-header .sunday {
+        color: red;
+      }
+      .calendar-header .saturday {
+        color: blue;
+      }
+      #goal-progress-bar {
+        background-color: #d3d3d3;
+      }
+
+      #goal-progress {
+        background-color: #32cd32;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+    <div class="max-w-4xl mx-auto py-12">
+      <header class="header">
+        <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+        <nav class="menu">
+          <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+          <div class="menu-item" onclick="location.href='month_feeling.html'">
+            이달의 기분
+          </div>
+          <div class="menu-item" onclick="location.href='community.html'">
+            게시판
+          </div>
+          <div class="menu-item" onclick="location.href='login.html'">
+            로그인
+          </div>
+          <div class="menu-item" onclick="location.href='test_alert.html'">
+            검사 위험도 설정
+          </div>
+        </nav>
+      </header>
+      <div class="title-container">
+        <h3
+          class="text-4xl font title"
+          style="cursor: pointer"
+          onclick="location.href='main.html'"
+        >
+          How was your day?
+        </h3>
+      </div>
+      <div class="month-container">
+        <h2 class="text-2xl font">October 2024</h2>
+      </div>
+      <div id="goal-progress-container" class="w-1/2 float-right">
+        <h2>
+          이번주 목표 달성도 : <span id="achievement-percentage">0%</span>
+        </h2>
+        <div id="goal-progress-bar" class="h-4 bg-gray-300 w-full">
+          <div
+            id="goal-progress"
+            class="h-4 bg-green-500"
+            style="width: 0%"
+          ></div>
+        </div>
+      </div>
+      <h2 class="text-2xl font"></h2>
+      <!-- 기능 버튼 -->
+      <div class="button-row">
+        <button onclick="location.href='../diary.html'">일기</button>
+        <button
+          onclick="location.href='../workout_goal.html'"
+          class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+        >
+          이번 주 목표
+        </button>
+        <button onclick="location.href='../daily-record-work-out.html'">
+          활동 기록
+        </button>
+        <button onclick="location.href='../choose-the-list.html'">
+          심리검사
+        </button>
+        <button onclick="location.href='../daily-record-feeling.html'">
+          오늘의 하루 이모티콘
+        </button>
+        <button onclick="location.href='../month_feeling.html?month=10'">
+          이달의 기분
+        </button>
+        <button onclick="location.href='../test_alert.html'">
+          검사 위험 설정
+        </button>
+      </div>
+      <div class="flex justify-between items-center mb-4 no-border">
+        <button
+          id="prev-month"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          September
+        </button>
+        <button
+          id="next-month"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          November
+        </button>
+      </div>
+      <div class="calendar-grid text-center calendar-header">
+        <div class="font-bold sunday">Sun</div>
+        <div class="font-bold">Mon</div>
+        <div class="font-bold">Tue</div>
+        <div class="font-bold">Wed</div>
+        <div class="font-bold">Thu</div>
+        <div class="font-bold">Fri</div>
+        <div class="font-bold saturday">Sat</div>
+
+        <!-- 전 달 -->
+        <div class="calendar-day prev-month sunday">29</div>
+        <div class="calendar-day prev-month">30</div>
+
+        <!-- 이번달 -->
+        <div class="calendar-day" data-date="1">1</div>
+        <div class="calendar-day" data-date="2">2</div>
+        <div class="calendar-day" data-date="3">3</div>
+        <div class="calendar-day" data-date="4">4</div>
+        <div class="calendar-day saturday" data-date="5">5</div>
+        <div class="calendar-day sunday" data-date="6">6</div>
+        <div class="calendar-day" data-date="7">7</div>
+        <div class="calendar-day" data-date="8">8</div>
+        <div class="calendar-day" data-date="9">9</div>
+        <div class="calendar-day" data-date="10">10</div>
+        <div class="calendar-day" data-date="11">11</div>
+        <div class="calendar-day saturday" data-date="12">12</div>
+        <div class="calendar-day sunday" data-date="13">13</div>
+        <div class="calendar-day" data-date="14">14</div>
+        <div class="calendar-day" data-date="15">15</div>
+        <div class="calendar-day" data-date="16">16</div>
+        <div class="calendar-day" data-date="17">17</div>
+        <div class="calendar-day" data-date="18">18</div>
+        <div class="calendar-day saturday" data-date="19">19</div>
+        <div class="calendar-day sunday" data-date="20">20</div>
+        <div class="calendar-day" data-date="21">21</div>
+        <div class="calendar-day" data-date="22">22</div>
+        <div class="calendar-day" data-date="23">23</div>
+        <div class="calendar-day" data-date="24">24</div>
+        <div class="calendar-day" data-date="25">25</div>
+        <div class="calendar-day saturday" data-date="26">26</div>
+        <div class="calendar-day sunday" data-date="27">27</div>
+        <div class="calendar-day" data-date="28">28</div>
+        <div class="calendar-day" data-date="29">29</div>
+        <div class="calendar-day" data-date="30">30</div>
+        <div class="calendar-day" data-date="31">31</div>
+      </div>
+      <!-- 전문가 연결 -->
+      <div id="alert-message-container"></div>
+      <div id="danger-message" class="hidden bg-red-200 text-red-800 p-4 mt-4">
+        우울 위험 감지되었습니다. 당신의 주의가 필요합니다. 필요하시다면,
+        전문기관과 주변의 도움을 받아보세요.
+      </div>
+    </div>
+
+    <script>
+      async function checkForAlerts() {
+        const response = await fetch("/get-alert-settings");
+        const settings = await response.json();
+
+        const uid = localStorage.getItem("uid");
+        const responseTests = await fetch(
+          `/get-psychological-tests?uid=${uid}&year=${new Date().getFullYear()}&month=${
+            new Date().getMonth() + 1
+          }`
+        );
+        const testData = await responseTests.json();
+
+        const recentTests = testData.filter((test) => {
+          const testDate = new Date(test.날짜);
+          const currentDate = new Date();
+          const timeDifference = Math.abs(currentDate - testDate);
+          const dayDifference = Math.ceil(
+            timeDifference / (1000 * 60 * 60 * 24)
+          );
+          return dayDifference <= 14;
+        });
+
+        let phqCount = 0;
+        let gadCount = 0;
+        let cesCount = 0;
+        let pssCount = 0;
+
+        recentTests.forEach((test) => {
+          if (test.PHQ_9점수 > 9) phqCount++;
+          if (test.GAD_7점수 > 7) gadCount++;
+          if (test.통합적_한국판_우울증_척도_점수 > 15) cesCount++;
+          if (test.한국형_스트레스_자가척도_점수 > 10) pssCount++;
+        });
+
+        let alertMessage = "";
+        if (phqCount >= settings.phqThreshold) {
+          alertMessage += "우울 주의! 상담 혹은 전문가의 도움 필요!\n";
+        }
+        if (gadCount >= settings.gadThreshold) {
+          alertMessage += "불안 주의! 상담 혹은 전문가의 도움 필요!\n";
+        }
+        if (cesCount >= settings.cesThreshold) {
+          alertMessage += "우울 주의! 상담 혹은 전문가의 도움 필요!\n";
+        }
+        if (pssCount >= settings.pssThreshold) {
+          alertMessage += "스트레스 주의! 상담 혹은 전문가의 도움 필요!\n";
+        }
+
+        if (alertMessage) {
+          const alertContainer = document.createElement("div");
+          alertContainer.className = "alert-message";
+          alertContainer.textContent = alertMessage;
+
+          const calendarContainer = document.getElementById(
+            "alert-message-container"
+          );
+          calendarContainer.appendChild(alertContainer);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", checkForAlerts);
+    </script>
+  </body>
+</html>

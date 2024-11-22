@@ -3,38 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diary Entries</title>
+    <title>EmoCal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="diary.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+        </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+        <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+        <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+        <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+        <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+        <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+        <div class="divider"></div>
+    </div>
     <div class="diary-main">
-        <!-- 상단 네비게이션 -->
-        <div class="view">
-            <div class="text-wrapper" onclick="location.href='main.html'" style="cursor: pointer;">EmoCal</div>
-            <div class="text-wrapper-2" onclick="location.href='month_feeling.html'" style="cursor: pointer;">이달의 기분</div>
-            <div class="text-wrapper-3" onclick="location.href='diary.html'" style="cursor: pointer;">일기</div>
-            <div class="text-wrapper-4" onclick="location.href='community.html'" style="cursor: pointer;">게시판</div>
-            <div class="text-wrapper-5" onclick="location.href='login.html'" style="cursor: pointer;">로그인</div>
-            <div class="text-wrapper-6" onclick="location.href='test_alert.html'" style="cursor: pointer;">검사 위험도 설정</div>
-            <img class="image" src="img/image-2.svg" />
-            <img class="img" src="img/image.svg" />
-        </div>
 
         <!-- 타이틀 및 버튼 -->
-        <div class="view-2">
+        <div class="view-2 castoro-regular">
             <div class="text-wrapper-7">당신만의 공간, 마음의 기록</div>
             <div class="text-wrapper-8">당신의 하루를 차곡차곡 담아보세요.</div>
             <div class="overlap-2">
-                <div class="rectangle"></div>
+                <div class="rectangle" onclick="location.href='diary_record.html'" style="cursor: pointer;"></div>
                 <div class="text-wrapper-9" onclick="location.href='diary_record.html'" style="cursor: pointer;">일기 작성</div>
             </div>
             <div class="overlap">
-                <div class="rectangle"></div>
+                <div class="rectangle" id="edit-button" style="cursor: pointer;"></div>
                 <div class="text-wrapper-9" id="edit-button" style="cursor: pointer;">일기 수정</div>
             </div>
             <div class="overlap-group">
-                <div class="rectangle"></div>
+                <div class="rectangle" id="delete-button" style="cursor: pointer;"></div>
                 <div class="text-wrapper-9" id="delete-button" style="cursor: pointer;">일기 삭제</div>
             </div>
 
@@ -44,7 +46,7 @@
         <div class="frame">
                                <!-- 정렬 드롭다운 -->
         <div class="flex justify-end mb-4">
-            <select id="sort-options" class="bg-white border border-gray-300 rounded py-2 px-4">
+            <select id="sort-options" class="bg-white border border-gray-300 rounded py-20 px-30">
                 <option value="recent">최신순</option>
                 <option value="oldest">오래된 순서</option>
                 <option value="created-newest">등록 최신순</option>

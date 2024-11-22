@@ -3,27 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Activity Tracking for mental state</title>
+    <title>EmoCal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">  
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+      </style>
   </head>
-  <body class="bg-gray-100">
+  <body>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+      <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+      <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+      <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+      <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+      <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+      <div class="divider"></div>
+  </div>
     <div class="min-h-screen flex flex-col justify-between">
       <header class="text-center p-6">
-        <div class="title-container">
-          <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-      </div>
+
         <h1 class="text-2xl font-bold">
-          오늘, 당신은 당신을 위해 무엇을 하였나요?
+          오늘, 당신이 남긴 한 걸음을 기록하세요.
         </h1>
         <div class="my-6"></div>
         <h4 class="text-1xl">
-          당신이 한 활동을 체크하고 활동한 시간을 입력 후 저장버튼을 눌러주세요. 하나의 활동은 하루에 1개만 저장됩니다.
+          오늘 하루동안 자신을 위해 한 활동을 기록해보세요. 활동을 선택하고 시간을 입력한 후 저장 버튼을 눌러주세요.
         </h4>
         <h4 class="text-1xl">
-          수정을 원하신다면, 활동을 체크하고 시간을 입력후 저장 시 수정됩니다.
+          하루에 하나의 활동만 저장할 수 있으며, 시간을 수정한 후 저장하면 기록이 업데이트됩니다.
         </h4>
         <h4 class="text-1xl">
-          00시간 00분으로 설정할 경우 해당 활동의 내용은 저장되지 않습니다.
+          시간을 00시간 00분으로 설정하면 해당 활동은 저장되지 않습니다.
         </h4>
       </header>
 
@@ -183,21 +197,22 @@
         </form>
 
         <div class="mt-10 p-4 bg-white rounded shadow-lg">
+          <div class="bg-[#FAF6E3] p-6 rounded-md" style="background-color: #FAF6E3 !important;">
           <h2 class="text-xl font-bold mb-4">운동, 명상, 독서, 취미의 긍정적 영향</h2>
           <p class="mb-4">
-            <strong>운동:</strong> 운동은 신체 활동을 통해 엔돌핀, 도파민과 같은 긍정적인 기분을 촉진하는 호르몬이 분비되며, 이는 스트레스 해소와 우울증 증상 완화에 매우 효과적입니다. 규칙적인 운동은 자존감을 높이고, 신체적 피로를 줄여 정신적으로 활력을 제공해줍니다. 땀을 흘리며 불안감을 낮추고, 긴장 완화에도 도움을 줍니다.
+            <strong>운동 : </strong> 운동은 신체 활동을 통해 엔돌핀과 도파민 같은 행복 호르몬을 활성화시켜 기분을 좋게 만듭니다. 스트레스 해소와 우울감 완화에 효과적이며, 자존감을 높이고 활력을 되찾을 수 있도록 돕습니다. 규칙적인 운동은 불안과 긴장을 줄이고, 몸과 마음을 건강하게 만들어줍니다.
           </p>
           <p class="mb-4">
-            <strong>명상:</strong> 명상은 마음을 고요하게 하고 심호흡을 통해 깊은 이완 상태를 제공합니다. 이러한 상태는 마음의 평온함을 가져오며, 불안감을 줄이고, 스트레스를 해소하는 데 중요한 역할을 합니다. 명상을 통해 집중력을 향상시키고 부정적인 생각을 조절하는 데 도움이 됩니다.
+            <strong>명상 : </strong> 명상은 마음을 고요하게 하고 심호흡을 통해 깊은 이완 상태를 제공합니다. 이러한 상태는 마음의 평온함을 가져오며, 불안감을 줄이고, 스트레스를 해소하는 데 중요한 역할을 합니다. 명상을 통해 집중력을 향상시키고 부정적인 생각을 조절하는 데 도움이 됩니다.
           </p>
           <p class="mb-4">
-            <strong>독서:</strong> 독서는 새로운 시각을 제공하고 일상에서 벗어나 다양한 이야기를 통해 마음의 안정을 찾을 수 있게 합니다. 책을 읽으며 몰입하는 시간은 뇌를 자극하면서도 마음을 차분하게 만들어 주며, 스트레스 해소에 효과적입니다. 독서는 지식의 확장뿐만 아니라 심리적 안정에도 기여합니다.
+            <strong>독서 : </strong> 독서는 새로운 시각을 제공하고 일상에서 벗어나 다양한 이야기를 통해 마음의 안정을 찾을 수 있게 합니다. 책을 읽으며 몰입하는 시간은 뇌를 자극하면서도 마음을 차분하게 만들어 주며, 스트레스 해소에 효과적입니다. 독서는 지식의 확장뿐만 아니라 심리적 안정에도 기여합니다.
           </p>
           <p class="mb-4">
-            <strong>취미:</strong> 취미 활동은 개인의 창의성을 발휘하고 자아 성취감을 느끼게 해줍니다. 또한, 즐거움을 통해 스트레스를 줄이고 일상에 활력을 더해 줍니다. 그림 그리기, 음악 감상, 요리와 같은 취미는 기분을 좋게 하고, 우울감에서 벗어날 수 있는 기회를 제공합니다.
+            <strong>취미 : </strong> 취미 활동은 개인의 창의성을 발휘하고 자아 성취감을 느끼게 해줍니다. 또한, 즐거움을 통해 스트레스를 줄이고 일상에 활력을 더해 줍니다. 그림 그리기, 음악 감상, 요리와 같은 취미는 기분을 좋게 하고, 우울감에서 벗어날 수 있는 기회를 제공합니다.
           </p>
         </div>
-
+        </div>
       </main>
     </div>
     <script>

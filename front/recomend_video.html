@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EmoCal</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col justify-between">
+      <header class="text-center p-6">
+        <h1 class="text-2xl font-bold">
+          오늘, 당신은 당신을 위해 무엇을 하였나요?
+        </h1>
+      </header>
+
+      <main class="flex-grow container mx-auto px-4">
+        <form id="activity-form">
+          <div class="space-y-6">
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="exercise"
+                name="activity"
+                value="운동"
+                class="mr-2"
+              />
+              <label for="exercise" class="flex-grow">운동</label>
+              <input
+                type="number"
+                id="exercise-hours"
+                placeholder="시간"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+              />
+              <input
+                type="number"
+                id="exercise-minutes"
+                placeholder="분"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+                max="59"
+              />
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="meditation"
+                name="activity"
+                value="명상"
+                class="mr-2"
+              />
+              <label for="meditation" class="flex-grow">명상</label>
+              <input
+                type="number"
+                id="meditation-hours"
+                placeholder="시간"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+              />
+              <input
+                type="number"
+                id="meditation-minutes"
+                placeholder="분"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+                max="59"
+              />
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="reading"
+                name="activity"
+                value="독서"
+                class="mr-2"
+              />
+              <label for="reading" class="flex-grow">독서</label>
+              <input
+                type="number"
+                id="reading-hours"
+                placeholder="시간"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+              />
+              <input
+                type="number"
+                id="reading-minutes"
+                placeholder="분"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+                max="59"
+              />
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="hobby"
+                name="activity"
+                value="취미"
+                class="mr-2"
+              />
+              <label for="hobby" class="flex-grow">취미</label>
+              <input
+                type="number"
+                id="hobby-hours"
+                placeholder="시간"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+              />
+              <input
+                type="number"
+                id="hobby-minutes"
+                placeholder="분"
+                class="flex-none w-20 p-2 border rounded"
+                min="0"
+                max="59"
+              />
+            </div>
+          </div>
+
+          <div class="text-center mt-6">
+            <button
+              type="button"
+              onclick="submitActivity()"
+              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              저장
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+    <script>
+      async function submitActivity() {
+        const activities = [];
+        const date = new Date().toISOString().split("T")[0]; // 오늘 날짜
+        const uid = localStorage.getItem("uid");
+
+        if (document.getElementById("exercise").checked) {
+          const hours =
+            parseInt(document.getElementById("exercise-hours").value) || 0;
+          const minutes =
+            parseInt(document.getElementById("exercise-minutes").value) || 0;
+          const time = hours + minutes / 60;
+          activities.push({ name: "운동", time });
+        }
+        if (document.getElementById("meditation").checked) {
+          const hours =
+            parseInt(document.getElementById("meditation-hours").value) || 0;
+          const minutes =
+            parseInt(document.getElementById("meditation-minutes").value) || 0;
+          const time = hours + minutes / 60;
+          activities.push({ name: "명상", time });
+        }
+        if (document.getElementById("reading").checked) {
+          const hours =
+            parseInt(document.getElementById("reading-hours").value) || 0;
+          const minutes =
+            parseInt(document.getElementById("reading-minutes").value) || 0;
+          const time = hours + minutes / 60;
+          activities.push({ name: "독서", time });
+        }
+        if (document.getElementById("hobby").checked) {
+          const hours =
+            parseInt(document.getElementById("hobby-hours").value) || 0;
+          const minutes =
+            parseInt(document.getElementById("hobby-minutes").value) || 0;
+          const time = hours + minutes / 60;
+          activities.push({ name: "취미", time });
+        }
+
+        const response = await fetch("/save-activity", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ date, activities, uid }),
+        });
+
+        if (response.ok) {
+          alert("활동이 저장되었습니다.");
+        } else {
+          alert("활동 저장에 실패했습니다.");
+        }
+        window.opener.location.reload();
+        window.close();
+      }
+    </script>
+  </body>
+</html>

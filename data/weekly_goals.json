@@ -26,5 +26,19 @@
       "hobbyGoal": "",
       "hobbyTime": ""
     }
+  },
+  {
+    "startDate": "2024-11-18",
+    "endDate": "2024-11-24",
+    "goals": {
+      "exerciseGoal": "1",
+      "exerciseTime": "2.00",
+      "meditationGoal": "",
+      "meditationTime": "",
+      "readingGoal": "",
+      "readingTime": "",
+      "hobbyGoal": "",
+      "hobbyTime": ""
+    }
   }
 ]

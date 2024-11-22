@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmoCal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b8b73956c3e470fb24d221ceacdcb53e&libraries=services"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css"> 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            border: 10px #7AB2D3 solid;
+            height: 60px;
+            width: 600px;
+            margin: 0 auto;
+        }
+        .search-box {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.5);
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: Castoro;
+        }
+        .search-button {
+            background-color: #7AB2D3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-left: 2px solid #6ea0bf;
+            cursor: pointer;
+        }
+        .results-container {
+            margin-top: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .result-card {
+            border: 1px solid #C9E9D2;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #FFFCFC;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <div style="width: 1402px; height: 151.01px; padding-top: 4px; padding-bottom: 4px; left: 19px; top: 14px; position: absolute; flex-direction: column; justify-content: space-between; align-items: flex-start; display: inline-flex">
+        <div style="align-self: stretch; justify-content: flex-end; align-items: center; gap: 20px; display: inline-flex">
+          <div style="text-align: center; color: rgba(0, 0, 0, 0.50); font-size: 20px; font-family: Castoro; font-weight: 400; line-height: 26px; word-wrap: break-word">로그인</div>
+          <div style="text-align: center; color: rgba(0, 0, 0, 0.50); font-size: 20px; font-family: Castoro; font-weight: 400; line-height: 26px; word-wrap: break-word">검사 위험도 설정</div>
+        </div>
+        <div style="width: 1336px; justify-content: flex-start; align-items: center; gap: 27px; display: inline-flex">
+          <div style="color: black; font-size: 40px; font-family: Castoro; font-weight: 400; line-height: 52px; word-wrap: break-word">  EmoCal</div>
+          <div style="width: 70.01px; height: 0px; transform: rotate(-90.82deg); transform-origin: 0 0; border: 1px rgba(0, 0, 0, 0.30) solid"></div>
+          <div style="color: black; font-size: 28px; font-family: Castoro; font-weight: 400; line-height: 36.40px; word-wrap: break-word">일기</div>
+          <div style="color: black; font-size: 28px; font-family: Castoro; font-weight: 400; line-height: 36.40px; word-wrap: break-word">이달의 기분</div>
+          <div style="color: black; font-size: 28px; font-family: Castoro; font-weight: 400; line-height: 36.40px; word-wrap: break-word">게시판</div>
+        </div>
+        <div style="align-self: stretch; height: 21.01px; padding: 10px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+          <div style="align-self: stretch; height: 0px; border: 1px rgba(0, 0, 0, 0.50) solid"></div>
+        </div>
+      </div>
+
+
+
+<div style="width: 1440px; height: 1024px; margin-top: 300px; auto; position: relative; background: white">
+    <div style="text-align: center; padding: 50px;">
+        <h1 style="font-size: 36px; font-family: Castoro;">전문 기관 추천</h1>
+        <p style="font-size: 18px; color: #333; font-family: Castoro;">
+            힘들고 괴로울 땐, 혼자 고민하지 마세요. <br>
+            지역을 검색하여 가까운 상담 기관을 찾아보세요.
+        </p>
+    </div>
+    </div>
+    <div style="width: 600px; height: 60px; left: 420px; top: 510px; position: absolute; background: white; border: 10px #7AB2D3 solid">
+        <input
+          id="search-input"
+          type="text"
+          placeholder="지역 검색"
+          style="width: 85%; height: 100%; border: none; outline: none; padding-left: 10px; font-size: 18px; color: rgba(0, 0, 0, 0.5);"
+        />
+        <button
+          onclick="searchCenters()"
+          style="width: 15%; height: 100%; border: none; background-color: #7AB2D3; color: white; font-size: 18px; top: -41px; left: 502px; position :relative;  cursor: pointer;"
+        >
+          검색
+        </button>
+      </div>
+      
+    <!-- 결과 표시 -->
+    <div id="results" class="results-container mb-4"></div>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="width: 1200px; text-align: left;">
+            <span style="color: black; font-size: 32px; font-family: Castoro; font-weight: 400; line-height: 41.60px; word-wrap: break-word">
+                아래의 서비스들은 무료로 이용할 수 있어요.<br/>
+            </span>
+            <span style="color: black; font-size: 24px; font-family: Castoro; font-weight: 400; line-height: 31.20px; word-wrap: break-word"><br/></span>
+            <span style="color: black; font-size: 24px; font-family: Castoro; font-weight: 400; line-height: 31.20px; word-wrap: break-word">
+                청소년 상담복지센터: 청소년(만 9세 ~ 24세)이라면 이용할 수 있는 상담복지센터에요. 각 지역구별로 있어요.<br/><br/>
+                정신건강복지센터 : 각 지역구에서 운영하는 정신건강복지센터에요. 포털 검색창에 “지역명 정신건강복지센터”를 검색하시면 쉽게 찾으실 수 있을거에요.<br/><br/>
+                대학교 학생상담센터 : 대학교마다 재학생을 위한 심리 상담을 운영해요.<br/><br/>
+                근로복지넷: 직장인을 위한 지원<br/><br/>
+                국립정신건강센터: 정신건강 정보를 제공 (
+            </span>
+            <span style="color: black; font-size: 24px; font-family: Castoro; font-weight: 400; text-decoration: underline; line-height: 31.20px; word-wrap: break-word">
+                https://www.mentalhealth.go.kr/portal/main/index.do
+            </span>
+            <span style="color: black; font-size: 24px; font-family: Castoro; font-weight: 400; line-height: 31.20px; word-wrap: break-word">)**</span>
+        </div>
+    </div>
+    
+    
+</div>
+    </div>
+
+    <script>
+        async function searchCenters() {
+          const searchInput = document.getElementById("search-input").value;
+      
+          if (!searchInput) {
+            alert("지역명을 입력해주세요!");
+            return;
+          }
+      
+          // Kakao API 검색 요청
+          const response = await fetch(`/search-centers?query=${encodeURIComponent(searchInput)}`);
+          const data = await response.json();
+      
+          // 무료 상담 기관 요청
+          const freeResponse = await fetch('/free-centers');
+          const freeData = await freeResponse.json();
+      
+          if (data.success) {
+            displayResults(data.results, freeData.results);
+          } else {
+            alert("검색 결과를 가져올 수 없습니다.");
+          }
+        }
+      
+        function displayResults(centers, freeCenters) {
+          const freeContainer = document.getElementById("free-centers");
+          const paidContainer = document.getElementById("paid-centers");
+          const hospitalsContainer = document.getElementById("hospital-centers");
+      
+          // 무료 상담 기관
+          freeContainer.innerHTML = "<h3>무료 상담 기관</h3>";
+          freeCenters.forEach((center) => {
+            freeContainer.innerHTML += `
+              <div>
+                <p><b>이름:</b> ${center.name}</p>
+                <p><b>주소:</b> ${center.address}</p>
+                <p><b>전화번호:</b> ${center.phone}</p>
+                <hr>
+              </div>`;
+          });
+      
+          // 유료 상담 기관
+          paidContainer.innerHTML = "<h3>유료 상담 기관</h3>";
+          centers.forEach((center) => {
+            paidContainer.innerHTML += `
+              <div>
+                <p><b>이름:</b> ${center.name}</p>
+                <p><b>주소:</b> ${center.address}</p>
+                <p><b>전화번호:</b> ${center.phone}</p>
+                <hr>
+              </div>`;
+          });
+      
+          // 병원 섹션 추가 (임의로 데이터를 동일하게 사용)
+          hospitalsContainer.innerHTML = "<h3>전문 병원</h3>";
+          centers.slice(0, 3).forEach((center) => {
+            hospitalsContainer.innerHTML += `
+              <div>
+                <p><b>이름:</b> ${center.name}</p>
+                <p><b>주소:</b> ${center.address}</p>
+                <p><b>전화번호:</b> ${center.phone}</p>
+                <hr>
+              </div>`;
+          });
+        }
+      </script>
+      
+</body>
+</html>

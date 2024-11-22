@@ -3,34 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GAD-7 Question</title>
+    <title>EmoCal</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css"> 
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+      </style>   
   </head>
-  <body class="bg-gray-100">
+  <body>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+      <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+      <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+      <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+      <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+      <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+      <div class="divider"></div>
+  </div>
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-2xl mx-auto">
-        <div class="title-container">
-          <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-      </div>
         <h1 class="text-center text-2xl font-bold mb-6">불안 증상 위험도 검사(GAD-7)</h1>
         <p class="text-center mb-4">
-          지난 2주일동안 당신은 다음의 문제들로 인해서 얼마나 자주 방해를
-          받았습니까?
+          지난 2주일동안 다음의 문제들로 인해서 얼마나 자주 방해를
+          받으셨나요? 아래에 체크해주세요.
         </p>
-
+        <div class="bg-[#C9E9D2] p-6 rounded-md" style="background-color: #C9E9D2 !important;">
         <form id="gad7-form">
           <div class="space-y-4">
             <!-- question block -->
             <div class="bg-white p-4 shadow rounded">
               <p>초조하거나 불안하거나 조마조마하게 느낀다.</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q1" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
-                <label><input type="radio" name="q1" value="1" class="mr-2" />며칠동안 방해받았다.</label>
-                <label><input type="radio" name="q1" value="2" class="mr-2" />7일 이상 방해받았다.</label>
-                <label><input type="radio" name="q1" value="3" class="mr-2" />거의 매일 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="1" class="mr-2" />며칠동안 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="2" class="mr-2" />7일 이상 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="3" class="mr-2" />거의 매일 방해받았다.</label>
               </div>
             </div>
 
@@ -38,10 +54,14 @@
             <div class="bg-white p-4 shadow rounded">
               <p>걱정하는 것을 멈추거나 조절할 수가 없다.</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q2" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
-                <label><input type="radio" name="q2" value="1" class="mr-2" />며칠동안 방해받았다.</label>
-                <label><input type="radio" name="q2" value="2" class="mr-2" />7일 이상 방해받았다.</label>
-                <label><input type="radio" name="q2" value="3" class="mr-2" />거의 매일 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="1" class="mr-2" />며칠동안 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="2" class="mr-2" />7일 이상 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="3" class="mr-2" />거의 매일 방해받았다.</label>
               </div>
             </div>
 
@@ -49,10 +69,14 @@
             <div class="bg-white p-4 shadow rounded">
               <p>여러가지 것들에 대해 걱정을 너무 많이 한다.</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q3" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
-                <label><input type="radio" name="q3" value="1" class="mr-2" />며칠동안 방해받았다.</label>
-                <label><input type="radio" name="q3" value="2" class="mr-2" />7일 이상 방해받았다.</label>
-                <label><input type="radio" name="q3" value="3" class="mr-2" />거의 매일 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="1" class="mr-2" />며칠동안 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="2" class="mr-2" />7일 이상 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="3" class="mr-2" />거의 매일 방해받았다.</label>
               </div>
             </div>
 
@@ -60,10 +84,14 @@
             <div class="bg-white p-4 shadow rounded">
               <p>편하게 있기가 어렵다.</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q4" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
-                <label><input type="radio" name="q4" value="1" class="mr-2" />며칠동안 방해받았다.</label>
-                <label><input type="radio" name="q4" value="2" class="mr-2" />7일 이상 방해받았다.</label>
-                <label><input type="radio" name="q4" value="3" class="mr-2" />거의 매일 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="1" class="mr-2" />며칠동안 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="2" class="mr-2" />7일 이상 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="3" class="mr-2" />거의 매일 방해받았다.</label>
               </div>
             </div>
 
@@ -71,10 +99,14 @@
             <div class="bg-white p-4 shadow rounded">
               <p>너무 안절부절해서 가만히 있기가 힘들다.</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q5" value="0" class="mr-2" />전혀 그러하지 않았다.</label>
-                <label><input type="radio" name="q5" value="1" class="mr-2" />며칠동안 그러하였다.</label>
-                <label><input type="radio" name="q5" value="2" class="mr-2" />7일 이상 그러하였다.</label>
-                <label><input type="radio" name="q5" value="3" class="mr-2" />거의 매일 그러하였다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="0" class="mr-2" />전혀 그러하지 않았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="1" class="mr-2" />며칠동안 그러하였다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="2" class="mr-2" />7일 이상 그러하였다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="3" class="mr-2" />거의 매일 그러하였다.</label>
               </div>
             </div>
 
@@ -82,10 +114,14 @@
             <div class="bg-white p-4 shadow rounded">
               <p>쉽게 짜증이 나거나 쉽게 성을 내게 된다.</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q6" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
-                <label><input type="radio" name="q6" value="1" class="mr-2" />며칠동안 방해받았다.</label>
-                <label><input type="radio" name="q6" value="2" class="mr-2" />7일 이상 방해받았다.</label>
-                <label><input type="radio" name="q6" value="3" class="mr-2" />거의 매일 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="1" class="mr-2" />며칠동안 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="2" class="mr-2" />7일 이상 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="3" class="mr-2" />거의 매일 방해받았다.</label>
               </div>
             </div>
             
@@ -93,10 +129,14 @@
             <div class="bg-white p-4 shadow rounded">
               <p>마치 끔찍한 일이 생길 것처럼 두렵게 느껴진다.</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q7" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
-                <label><input type="radio" name="q7" value="1" class="mr-2" />며칠동안 방해받았다.</label>
-                <label><input type="radio" name="q7" value="2" class="mr-2" />7일 이상 방해받았다.</label>
-                <label><input type="radio" name="q7" value="3" class="mr-2" />거의 매일 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="0" class="mr-2" />전혀 방해받지 않았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="1" class="mr-2" />며칠동안 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="2" class="mr-2" />7일 이상 방해받았다.</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="3" class="mr-2" />거의 매일 방해받았다.</label>
               </div>
             </div>
           </div>
@@ -104,10 +144,11 @@
           <!-- Submit button -->
           <div class="text-center mt-6">
             <button type="button" onclick="submitGAD7()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-              제출
+              검사 제출
             </button>
           </div>
         </form>
+      </div>
       </div>
     </div>
 

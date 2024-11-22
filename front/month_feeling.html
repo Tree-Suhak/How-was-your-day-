@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>이달의 감정</title>
+  <title>EmoCal</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="diary.css">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+    </style>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -48,8 +54,14 @@
   </style>
 </head>
 <body>
-  <div class="title-container">
-    <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+  <div class="navbar">
+    <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+    <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+    <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+    <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+    <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+    <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+    <div class="divider"></div>
 </div>
   <h1 id="title">이달의 감정 (N월)</h1>
   <p id="description" style="margin-top: 10px; font-size: 16px;">이번 달 가장 많이 느끼신 감정을 알려드릴게요</p>

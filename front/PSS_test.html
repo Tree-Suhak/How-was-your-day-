@@ -3,34 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PPS Question</title>
+    <title>EmoCal</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="diary.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+      </style>
   </head>
-  <body class="bg-gray-100">
+  <body>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+      <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+      <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+      <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+      <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+      <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+      <div class="divider"></div>
+    </div>
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-2xl mx-auto">
-        <div class="title-container">
-          <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-      </div>
         <h1 class="text-center text-2xl font-bold mb-6">한국형 스트레스 자가척도(PPS)</h1>
         <p class="text-center mb-4">
           최근 1개월동안 당신이 느끼고 생각한 것에 대해서 얼마나 자주 느꼈는지 표시해주세요.
         </p>
-
+        <div class="bg-[#C9E9D2] p-6 rounded-md" style="background-color: #C9E9D2 !important;">
         <form id="pss-form">
           <div class="space-y-4">
             <!-- question block -->
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 예상치 못했던 일 때문에 당황한 적이 얼마나 있었습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q1" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q1" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q1" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q1" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q1" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q1" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -38,11 +55,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 인생에서 중요한 일들을 조절할 수 없다는 느낌을 얼마나 경험하였습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q2" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q2" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q2" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q2" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q2" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q2" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -50,11 +72,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 신경이 예민해지고 스트레스를 받고 있다는 느낌을 얼마나 경험하였습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q3" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q3" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q3" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q3" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q3" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q3" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -62,11 +89,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 당신의 개인적 문제들을 다루는데 있어서 얼마나 자주 자신감을 느끼셨습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q4" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q4" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q4" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q4" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q4" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q4" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -74,11 +106,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 일상의 일들이 당신의 생각대로 진행되고 있다는 느낌을 얼마나 경험하였습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q5" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q5" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q5" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q5" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q5" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q5" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -86,11 +123,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 당신이 꼭 해야하는 일을 처리할 수 없다고 생각한 적이 얼마나 있었습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q6" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q6" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q6" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q6" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q6" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q6" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -98,11 +140,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 일상생활의 짜증을 얼마나 자주 잘 다스릴 수 있었습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q7" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q7" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q7" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q7" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q7" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q7" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -110,11 +157,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 최상의 컨디션이라고 얼마나 자주 느끼셨습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q8" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q8" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q8" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q8" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q8" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q8" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q8" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q8" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q8" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q8" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -122,11 +174,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 당신이 통제할 수 없는 일 때문에 화가난 경험이 얼마나 있었습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q9" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q9" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q9" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q9" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q9" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q9" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q9" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q9" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q9" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q9" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
 
@@ -134,11 +191,16 @@
             <div class="bg-white p-4 shadow rounded">
               <p>최근 1개월동안, 어려운 일들이 너무 많이 쌓여서 극복하지 못할 것 같은 느낌을 얼마나 자주 경험하셨습니까?</p>
               <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q10" value="0" class="mr-2" />전혀 없음</label>
-                <label><input type="radio" name="q10" value="1" class="mr-2" />거의 없음</label>
-                <label><input type="radio" name="q10" value="2" class="mr-2" />때때로 있음</label>
-                <label><input type="radio" name="q10" value="3" class="mr-2" />자주 있음</label>
-                <label><input type="radio" name="q10" value="4" class="mr-2" />매우 자주</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q10" value="0" class="mr-2" />전혀 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q10" value="1" class="mr-2" />거의 없음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q10" value="2" class="mr-2" />때때로 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q10" value="3" class="mr-2" />자주 있음</label>
+                <label class="text-xs"
+                  ><input type="radio" name="q10" value="4" class="mr-2" />매우 자주</label>
               </div>
             </div>
           </div>
@@ -146,10 +208,11 @@
           <!-- Submit button -->
           <div class="text-center mt-6">
             <button type="button" onclick="submitPSS()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-              제출
+              검사 제출
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
 

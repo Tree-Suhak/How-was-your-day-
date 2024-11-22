@@ -3,34 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>알람 설정</title>
+    <title>EmoCal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+        </style>
 </head>
-<body class="bg-gray-100">
+<body>
+    <div class="navbar">
+        <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+        <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+        <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+        <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+        <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+        <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+        <div class="divider"></div>
+      </div>
     <div class="container mx-auto py-6">
-        <div class="title-container">
-            <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-        </div>
         <h1 class="text-2xl font-bold text-center mb-6">검사 결과 위험 알람 설정</h1>
+        <p class="text-lg mt-2 text-gray-600 text-center">2주동안 자가검진 결과가 몇 번 이상 위험으로 나올지 설정해요.</p>
+        <p class="text-lg mt-2 text-gray-600 mb-16 text-center">2주동안 하나의 검사라도 위험하다는 결과가 설정 횟수 이상으로 나온다면 바로 알려드릴게요.</p>
         <form id="alert-form">
-            <div class="mb-4">
-                <label for="phq-threshold" class="block text-lg font-bold mb-2">PHQ 알림 기준</label>
-                <input type="number" id="phq-threshold" class="p-2 border rounded w-full" value="2" min="1" max="14">
+            <div class="mb-4 flex items-center justify-between">
+                <label for="phq-threshold" class="block text-lg font-bold mb-2">우울증 위험도 검사(PHQ-9) 알림 기준</label>
+                <input type="number" id="phq-threshold" class="p-2 border justify-end rounded w-1/8" value="2" min="1" max="14">
             </div>
 
-            <div class="mb-4">
-                <label for="gad-threshold" class="block text-lg font-bold mb-2">GAD 알림 기준</label>
-                <input type="number" id="gad-threshold" class="p-2 border rounded w-full" value="2" min="1" max="14">
+            <div class="mb-4 flex items-center justify-between">
+                <label for="ces-threshold" class="block text-lg font-bold mb-2">통합적 한국판 우울증 척도(CES-D) 알림 기준</label>
+                <input type="number" id="ces-threshold" class="p-2 border justify-end rounded w-1/8" value="2" min="1" max="14">
             </div>
 
-            <div class="mb-4">
-                <label for="ces-threshold" class="block text-lg font-bold mb-2">CES 알림 기준</label>
-                <input type="number" id="ces-threshold" class="p-2 border rounded w-full" value="2" min="1" max="14">
+            
+            <div class="mb-4 flex items-center justify-between">
+                <label for="gad-threshold" class="block text-lg font-bold mb-2">불안 증상 위험도 검사(GAD-7)</label>
+                <input type="number" id="gad-threshold" class="p-2 border justify-end rounded w-1/8" value="2" min="1" max="14">
             </div>
 
-            <div class="mb-4">
-                <label for="pss-threshold" class="block text-lg font-bold mb-2">PSS 알림 기준</label>
-                <input type="number" id="pss-threshold" class="p-2 border rounded w-full" value="2" min="1" max="14">
+            <div class="mb-10 flex items-center justify-between">
+                <label for="pss-threshold" class="block text-lg font-bold mb-2">한국형 스트레스 자가척도(PSS)</label>
+                <input type="number" id="pss-threshold" class="p-2 border justify-end rounded w-1/8" value="2" min="1" max="14">
             </div>
 
             <div class="text-center">

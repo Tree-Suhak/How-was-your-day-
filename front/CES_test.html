@@ -3,66 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CES-D Question</title>
+    <title>EmoCal</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+      </style>
   </head>
-  <body class="bg-gray-100">
-    <div class="title-container">
-      <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+  <body>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+      <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+      <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+      <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+      <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+      <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+      <div class="divider"></div>
   </div>
-    <div class="container mx-auto px-4 py-8">
+      <div class="container mx-auto px-4 py-8">
       <div class="max-w-2xl mx-auto">
         <h1 class="text-center text-2xl font-bold mb-6">통합적 한국판 우울증 척도(CES-D)</h1>
         <p class="text-center mb-4">
-          지난 1주일동안 당신이 느끼고 행동한 것을 잘 나타낸다고 생각되는 답변에 체크해주세요.
+          지난 1주일동안 느끼고 행동한 것을 잘 나타낸다고 생각되는 답변에 체크해주세요.
         </p>
-
+        <div class="bg-[#C9E9D2] p-6 rounded-md" style="background-color: #C9E9D2 !important;">
         <form id="cesd-form">
           <div class="space-y-4">
             <!-- question block -->
             <div class="bg-white p-4 shadow rounded">
               <p>평소에는 성가시지 않았던 일이 성가시게 느껴졌다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q1" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q1" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q1" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q1" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q1" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q1" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q1" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q1" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #2 question-->
             <div class="bg-white p-4 shadow rounded">
-              <p>별로 먹고 싶지 않았다; 입맛이 없었다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q2" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q2" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q2" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q2" value="3" class="mr-2" />대부분(5~7일)</label>
+              <p>별로 먹고 싶지 않았다. 입맛이 없었다.</p>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q2" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q2" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q2" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q2" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #3 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>가족이나 친구가 도와주더라도 울적한 기분을 떨칠 수 없었다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q3" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q3" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q3" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q3" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q3" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q3" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q3" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q3" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #4 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>나도 다른 사람만큼 기분이 좋았다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q4" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q4" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q4" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q4" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q4" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q4" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q4" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q4" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
@@ -70,176 +82,176 @@
             <!-- #5 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>하고 있는 일에 마음을 집중하기가 어려웠다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q5" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q5" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q5" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q5" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q5" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q5" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q5" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q5" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
             
             <!-- #6 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>우울했다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q6" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q6" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q6" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q6" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q6" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q6" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q6" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q6" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #7 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>하는 일마다 힘들게 느꼈다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q7" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q7" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q7" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q7" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q7" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q7" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q7" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q7" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #8 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>미래에 대해 희망적으로 느꼈다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q8" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q8" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q8" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q8" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q8" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q8" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q8" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q8" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #9 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>내 인생은 실패작이라고 생각했다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q9" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q9" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q9" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q9" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q9" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q9" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q9" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q9" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #10 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>무서움을 느꼈다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q10" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q10" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q10" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q10" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q10" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q10" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q10" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q10" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #11 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>잠을 설쳤다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q11" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q11" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q11" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q11" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q11" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q11" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q11" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q11" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #12 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>행복했다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q12" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q12" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q12" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q12" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q12" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q12" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q12" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q12" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #13 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>평소보다 말을 적게 했다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q13" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q13" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q13" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q13" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q13" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q13" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q13" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q13" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #14 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>외로움을 느꼈다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q14" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q14" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q14" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q14" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q14" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q14" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q14" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q14" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #15 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>사람들이 불친절했다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q15" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q15" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q15" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q15" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q15" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q15" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q15" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q15" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #16 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>인생이 즐거웠다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q16" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q16" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q16" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q16" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q16" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q16" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q16" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q16" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #17 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>울음을 터뜨린 적이 있었다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q17" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q17" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q17" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q17" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q17" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q17" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q17" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q17" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #18 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>슬픔을 느꼈다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q18" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q18" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q18" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q18" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q18" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q18" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q18" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q18" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #19 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>사람들이 나를 싫어한다고 느꼈다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q19" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q19" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q19" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q19" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q19" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q19" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q19" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q19" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>
 
             <!-- #20 question-->
             <div class="bg-white p-4 shadow rounded">
               <p>일을 제대로 진척시킬 수 없었다.</p>
-              <div class="flex justify-between mt-2">
-                <label><input type="radio" name="q20" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
-                <label><input type="radio" name="q20" value="1" class="mr-2" />때때로(1~2일)</label>
-                <label><input type="radio" name="q20" value="2" class="mr-2" />상당히(3~4일)</label>
-                <label><input type="radio" name="q20" value="3" class="mr-2" />대부분(5~7일)</label>
+              <div class="flex justify-between mt-4">
+                <label class="text-sm"><input type="radio" name="q20" value="0" class="mr-2" />거의 드물게(1일 이하)</label>
+                <label class="text-sm"><input type="radio" name="q20" value="1" class="mr-2" />때때로(1~2일)</label>
+                <label class="text-sm"><input type="radio" name="q20" value="2" class="mr-2" />상당히(3~4일)</label>
+                <label class="text-sm"><input type="radio" name="q20" value="3" class="mr-2" />대부분(5~7일)</label>
               </div>
             </div>            
 
@@ -248,10 +260,11 @@
           <!-- Submit button -->
           <div class="text-center mt-6">
             <button type="button" onclick="submitCESD()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-              제출
+              검사 제출
             </button>
           </div>
         </form>
+      </div>
       </div>
     </div>
 

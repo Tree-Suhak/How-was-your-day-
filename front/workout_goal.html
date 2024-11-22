@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Workout Goals</title>
+    <title>EmoCal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+        </style>  
 </head>
-<body class="bg-gray-100">
+<body>
+    <div class="navbar">
+        <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+        <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+        <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+        <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+        <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+        <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+        <div class="divider"></div>
+      </div>
     <div class="min-h-screen flex flex-col justify-between">
         <header class="text-center p-6">
-            <div class="title-container">
-                <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-            </div>
             <h1 class="text-2xl font-bold">이번 주 목표 설정</h1>
-            <p id="goal-period" class="text-lg mt-2 text-gray-600"></p>
+            <p class="text-xs mt-2 text-gray-600 mb-4">한 주 동안 건강을 위해 할 활동의 목표를 설정해주세요.</p>
+            <p id="goal-period" class="text-sm mt-2 text-gray-600 mb-4"></p>
         </header>
 
         <main class="flex-grow container mx-auto px-4">
@@ -22,8 +35,8 @@
                     <!-- 운동 섹션 -->
                     <div class="flex items-center justify-between">
                         <label for="exercise-goal" class="text-lg font-bold">운동 목표</label>
-                        <div class="flex items-center w-2/3 justify-end space-x-2">
-                            <select id="exercise-goal" class="p-2 border rounded w-1/3 text-right">
+                        <div class="flex items-center w-1/2 justify-end space-x-2">
+                            <select id="exercise-goal" class="p-2 border rounded w-35 text-right">
                                 <option value="0">주에 0회</option>
                                 <option value="1">주에 1회</option>
                                 <option value="2">주에 2회</option>
@@ -79,8 +92,8 @@
                     <!-- 명상 섹션 -->
                     <div class="flex items-center justify-between">
                         <label for="meditation-goal" class="text-lg font-bold">명상 목표</label>
-                        <div class="flex items-center w-2/3 justify-end space-x-2">
-                            <select id="meditation-goal" class="p-2 border rounded w-1/3 text-right">
+                        <div class="flex items-center w-1/2 justify-end space-x-2">
+                            <select id="meditation-goal" class="p-2 border rounded w-35 text-right">
                                 <option value="0">주에 0회</option>
                                 <option value="1">주에 1회</option>
                                 <option value="2">주에 2회</option>
@@ -136,8 +149,8 @@
                     <!-- 독서 섹션 -->
                     <div class="flex items-center justify-between">
                         <label for="reading-goal" class="text-lg font-bold">독서 목표</label>
-                        <div class="flex items-center w-2/3 justify-end space-x-2">
-                            <select id="reading-goal" class="p-2 border rounded w-1/3 text-right">
+                        <div class="flex items-center w-1/2 justify-end space-x-2">
+                            <select id="reading-goal" class="p-2 border rounded w-35 text-right">
                                 <option value="0">주에 0회</option>
                                 <option value="1">주에 1회</option>
                                 <option value="0">주에 2회</option>
@@ -193,8 +206,8 @@
                     <!-- 취미 섹션 -->
                     <div class="flex items-center justify-between">
                         <label for="hobby-goal" class="text-lg font-bold">취미 목표</label>
-                        <div class="flex items-center w-2/3 justify-end space-x-2">
-                            <select id="hobby-goal" class="p-2 border rounded w-1/3 text-right">
+                        <div class="flex items-center w-1/2 justify-end space-x-2">
+                            <select id="hobby-goal" class="p-2 border rounded w-35 text-right">
                                 <option value="0">주에 0회</option>
                                 <option value="1">주에 1회</option>
                                 <option value="2">주에 2회</option>
@@ -250,7 +263,7 @@
                 
 
                     <div class="text-center mt-6">
-                        <button type="button" onclick="saveGoal()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">목표 저장</button>
+                        <button type="button" onclick="saveGoal()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">저장</button>
                     </div>
                 </div>
             </form>

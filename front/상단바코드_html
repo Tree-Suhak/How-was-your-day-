@@ -1,0 +1,10 @@
+<!-- 상단바 -->
+<div class="navbar">
+    <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+    <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+    <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+    <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+    <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+    <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+    <div class="divider"></div>
+</div>

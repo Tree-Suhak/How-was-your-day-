@@ -722,6 +722,69 @@ app.get('/get-recent-test-results', (req, res) => {
 });
 
 
+/////////////////////////////////////////// 전문 상담 기관 추천 ///////////////////////////////////////
+
+// Kakao API Key (환경 변수로 관리하는 것을 추천)
+const KAKAO_API_KEY = 'b8b73956c3e470fb24d221ceacdcb53e';
+
+// Kakao Maps API 검색 요청을 처리하는 라우트
+app.get('/search-centers', async (req, res) => {
+  const { query } = req.query;
+
+  if (!query) {
+    return res.status(400).json({ success: false, message: '지역명을 입력해주세요.' });
+  }
+
+  try {
+    // Kakao Maps API URL
+    const kakaoUrl = `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(
+      query
+    )}`;
+
+    // Kakao Maps API 요청
+    const response = await fetch(kakaoUrl, {
+      headers: {
+        Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Kakao API 요청 실패: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    const filteredResults = data.documents.map((center) => ({
+      name: center.place_name,
+      address: center.road_address_name || center.address_name,
+      phone: center.phone || '번호 정보 없음',
+    }));
+
+    res.json({ success: true, results: filteredResults });
+  } catch (error) {
+    console.error('Kakao API 요청 실패:', error);
+    res.status(500).json({ success: false, message: '상담 기관 정보를 불러오지 못했습니다.' });
+  }
+});
+
+// 무료 상담 기관 추천 (더미 데이터로 제공)
+app.get('/free-centers', (req, res) => {
+  const freeCenters = [
+    {
+      name: '청소년 상담복지센터',
+      address: '서울특별시 중구 예시로 123',
+      phone: '02-123-4567',
+    },
+    {
+      name: '정신건강복지센터',
+      address: '서울특별시 강남구 강남대로 456',
+      phone: '02-987-6543',
+    },
+  ];
+
+  res.json({ success: true, results: freeCenters });
+});
+
+
 
 /////////////////////////////////////////// 커뮤니티 ///////////////////////////////////
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmoCal</title>
+    <title>Interactive Daily Record Calendar - November 2024</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .calendar-day:hover {
@@ -99,7 +99,7 @@
 
         </div>
         <div class="month-container">
-            <h2 class="text-2xl font">August 2024</h2>
+            <h2 class="text-2xl font">November 2024</h2>
         </div>
         <!-- 기능 버튼 -->
         <div class="button-row">
@@ -108,12 +108,12 @@
             <button onclick="location.href='../daily-record-work-out.html'">활동 기록</button>
             <button onclick="location.href='../choose-the-list.html'">심리검사</button>
             <button onclick="location.href='../daily-record-feeling.html'">오늘의 하루 이모티콘</button>
-            <button onclick="location.href='../month_feeling.html?month=8'">이달의 기분</button>
+            <button onclick="location.href='../month_feeling.html?month=11'">이달의 기분</button>
             <button onclick="location.href='../test_alert.html'">검사 위험 설정</button>
         </div>
         <div class="flex justify-between items-center mb-4 no-border">
-            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">July</button>
-            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">September</button>
+            <button id="prev-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">October</button>
+            <button id="next-month" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">December</button>
         </div>
         <div class="calendar-grid text-center calendar-header">
             <div class="font-bold sunday">Sun</div>
@@ -125,43 +125,44 @@
             <div class="font-bold saturday">Sat</div>
 
             <!-- 전 달 -->
-            <div class="calendar-day prev-month sunday">28</div>
+            <div class="calendar-day prev-month sunday">27</div>
+            <div class="calendar-day prev-month">28</div>
             <div class="calendar-day prev-month">29</div>
             <div class="calendar-day prev-month">30</div>
             <div class="calendar-day prev-month">31</div>
 
-            <!-- 이번달-->
+
+            <!-- 이번달 -->
             <div class="calendar-day" data-date="1">1</div>
-            <div class="calendar-day" data-date="2">2</div>
-            <div class="calendar-day saturday" data-date="3">3</div>
-            <div class="calendar-day sunday" data-date="4">4</div>
+            <div class="calendar-day saturday" data-date="2">2</div>
+            <div class="calendar-day sunday" data-date="3">3</div>
+            <div class="calendar-day" data-date="4">4</div>
             <div class="calendar-day" data-date="5">5</div>
             <div class="calendar-day" data-date="6">6</div>
             <div class="calendar-day" data-date="7">7</div>
             <div class="calendar-day" data-date="8">8</div>
-            <div class="calendar-day" data-date="9">9</div>
-            <div class="calendar-day saturday" data-date="10">10</div>
-            <div class="calendar-day sunday" data-date="11">11</div>
+            <div class="calendar-day saturday" data-date="9">9</div>
+            <div class="calendar-day sunday" data-date="10">10</div>
+            <div class="calendar-day" data-date="11">11</div>
             <div class="calendar-day" data-date="12">12</div>
             <div class="calendar-day" data-date="13">13</div>
             <div class="calendar-day" data-date="14">14</div>
             <div class="calendar-day" data-date="15">15</div>
-            <div class="calendar-day" data-date="16">16</div>
-            <div class="calendar-day saturday" data-date="17">17</div>
-            <div class="calendar-day sunday" data-date="18">18</div>
+            <div class="calendar-day saturday" data-date="16">16</div>
+            <div class="calendar-day sunday" data-date="17">17</div>
+            <div class="calendar-day" data-date="18">18</div>
             <div class="calendar-day" data-date="19">19</div>
             <div class="calendar-day" data-date="20">20</div>
             <div class="calendar-day" data-date="21">21</div>
             <div class="calendar-day" data-date="22">22</div>
-            <div class="calendar-day" data-date="23">23</div>
-            <div class="calendar-day saturday" data-date="24">24</div>
-            <div class="calendar-day sunday" data-date="25">25</div>
+            <div class="calendar-day saturday" data-date="23">23</div>
+            <div class="calendar-day sunday" data-date="24">24</div>
+            <div class="calendar-day" data-date="25">25</div>
             <div class="calendar-day" data-date="26">26</div>
             <div class="calendar-day" data-date="27">27</div>
             <div class="calendar-day" data-date="28">28</div>
             <div class="calendar-day" data-date="29">29</div>
-            <div class="calendar-day" data-date="30">30</div>
-            <div class="calendar-day saturday" data-date="31">31</div>
+            <div class="calendar-day saturday" data-date="30">30</div>
             </div>
         <!-- 전문가 연결 -->
             <div id="alert-message-container"></div>

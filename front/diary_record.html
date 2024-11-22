@@ -3,29 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diary</title>
+    <title>EmoCal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+        </style>
 </head>
 <body class="bg-white text-gray-800">
-    <div class="max-w-4xl mx-auto py-12">
-        <div class="title-container">
-            <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
+    <!-- 상단바 -->
+<div class="navbar">
+    <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+    <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+    <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+    <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+    <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+    <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+    <div class="divider"></div>
+</div>
+
+<div class="max-w-4xl mx-auto py-12">
+    <div class="title-container"></div>
+    <h1 class="text-4xl font-bold text-center mb-8">당신의 하루를 글로 담아보세요</h1>
+    <p class="text-lg text-gray-600 text-center mb-8">오늘 하루, 마음에 남은 순간들을 글로 담아보세요. 당신의 이야기는 소중합니다.</p>
+    
+    <form id="diary-form" class="bg-custom-form shadow-md rounded px-4 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="date">날짜</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" required>
         </div>
-        <h1 class="text-4xl font-bold text-center mb-8">오늘 하루의 기록</h1>
-        <form id="diary-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">Date</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="entry">Diary Entry</label>
-                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="entry" rows="10" required></textarea>
-            </div>
-            <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Save</button>
-            </div>
-        </form>
-    </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="entry">일기</label>
+            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="entry" rows="10" required></textarea>
+        </div>
+        <div class="flex items-center justify-between">
+            <button class="bg-custom-button hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">일기 저장</button>
+        </div>
+    </form>
+</div>
+
 
     <script>
         document.getElementById('diary-form').addEventListener('submit', async function(event) {

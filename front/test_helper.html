@@ -3,21 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Self-Assessment Test Helper</title>
+    <title>EmoCal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+        </style>
 </head>
-<body class="bg-gray-100">
+<body>
+    <div class="navbar mb-8">
+        <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+        <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+        <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+        <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+        <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+        <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+        <div class="divider"></div>
+      </div>
     <div class="min-h-screen flex items-center justify-center">
-        <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl w-full">
-            <div class="title-container">
-                <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-            </div>
-            <h1 class="text-xl font-bold mb-6">자가진단용 검사 도움말</h1>
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl w-full">
+            <h1 class="text-2xl font-bold mb-8 text-center">검사 해석 방법</h1>
+            <p class="mb-6 text-center">검사 결과를 해석하는 방법에 대해서 알려드릴게요. 검사에 따른 점수의 설명을 확인해보세요.</p>
             <table class="w-full table-auto">
                 <thead>
-                    <tr>
+                    <tr class="bg-[#D2DAFF] p-6 rounded-md" style="background-color: #D2DAFF !important;">
                         <th class="px-4 py-2">검사 종류</th>
-                        <th class="px-4 py-2">점수 범위</th>
+                        <th class="px-4 py-2">점수</th>
                         <th class="px-4 py-2">설명</th>
                     </tr>
                 </thead>
@@ -25,72 +38,58 @@
                     <tr class="bg-gray-100">
                         <td class="border px-4 py-2">우울증 위험도 검사 (PHQ-9)</td>
                         <td class="border px-4 py-2">0-4</td>
-                        <td class="border px-4 py-2">우울 아님 - 유의한 수준의 우울감이 시사되지 않습니다.</td>
+                        <td class="border px-4 py-2">우울하지 않아요. 조심하지 않아도 괜찮아요.</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2"></td>
                         <td class="border px-4 py-2">5-9</td>
-                        <td class="border px-4 py-2">가벼운 우울 - 경미한 수준의 우울감이 있으나 일상생활에 지장을 주지 않습니다.</td>
+                        <td class="border px-4 py-2">가벼운 우울이에요. 일상생활에 지장을 주지 않아요.</td>
                     </tr>
                     <tr class="bg-gray-100">
                         <td class="border px-4 py-2"></td>
                         <td class="border px-4 py-2">10-19</td>
-                        <td class="border px-4 py-2">중간 정도의 우울 - 중간 수준의 우울감이 시사됩니다. 가까운 전문기관을 방문하는 것이 좋습니다.</td>
+                        <td class="border px-4 py-2">조금 위험한 우울이에요. 가까운 상담기관이나 병원을 방문하는 것을 추천해요.</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2"></td>
                         <td class="border px-4 py-2">20-27</td>
-                        <td class="border px-4 py-2">심한 우울 - 심한 수준의 우울감이 시사됩니다. 전문기관의 치료적 개입이 필요합니다.</td>
-                    </tr>
-                    <tr class="bg-gray-100">
-                        <td class="border px-4 py-2">불안 증상 위험도 검사 (GAD-7)</td>
-                        <td class="border px-4 py-2">1-4</td>
-                        <td class="border px-4 py-2">불안이 아닙니다.</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2"></td>
-                        <td class="border px-4 py-2">5 이상</td>
-                        <td class="border px-4 py-2">불안이 시사됩니다.</td>
+                        <td class="border px-4 py-2">심한 우울이에요. 전문기관의 치료적 개입이 필요해요. 주변에게 알리고 도움을 받으시는건 어떠신가요?</td>
                     </tr>
                     <tr class="bg-gray-100">
                         <td class="border px-4 py-2">통합적 한국판 우울증 척도 (CES-D)</td>
                         <td class="border px-4 py-2">0-15</td>
-                        <td class="border px-4 py-2">정상 - 유의한 수준의 우울감이 시사되지 않습니다.</td>
+                        <td class="border px-4 py-2">우울하지 않아요. 조심하지 않아도 괜찮아요.</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2"></td>
                         <td class="border px-4 py-2">16-20</td>
-                        <td class="border px-4 py-2">경미한 우울 - 경미한 수준의 우울감이 있으나 일상생활에 지장을 주지 않습니다.</td>
+                        <td class="border px-4 py-2">가벼운 우울이에요. 일상생활에 지장을 주지 않아요.</td>
                     </tr>
                     <tr class="bg-gray-100">
                         <td class="border px-4 py-2"></td>
                         <td class="border px-4 py-2">21-24</td>
-                        <td class="border px-4 py-2">중한 우울 - 중한 수준의 우울감이 시사됩니다. 가까운 전문기관을 방문하여 평가와 도움이 필요할 수 있습니다.</td>
+                        <td class="border px-4 py-2">조금 위험한 우울이에요. 가까운 상담기관이나 병원을 방문하는 것을 추천해요.</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2"></td>
                         <td class="border px-4 py-2">25-60</td>
-                        <td class="border px-4 py-2">심한 우울 - 심한 수준의 우울감이 시사됩니다. 전문기관의 치료적 개입이 필요합니다.</td>
+                        <td class="border px-4 py-2">심심한 우울이에요. 전문기관의 치료적 개입이 필요해요. 주변에게 알리고 도움을 받으시는건 어떠신가요?</td>
                     </tr>
+                    <tr class="bg-gray-100">
+                        <td class="border px-4 py-2">불안 증상 위험도 검사 (GAD-7)</td>
+                        <td class="border px-4 py-2">1-4</td>
+                        <td class="border px-4 py-2">불안이 아니에요. 걱정하지 않으셔도 괜찮아요.</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2"></td>
+                        <td class="border px-4 py-2">5 이상</td>
+                        <td class="border px-4 py-2">불안한 상태에요. 13점 미만의 가벼운 불안상태라면 괜찮아요. 13점 이상, 21점 만점에 가깝다면 병원이나 상담기관에 방문해보시는 것을 추천해요.</td>
+                    </tr>
+
                     <tr class="bg-gray-100">
                         <td class="border px-4 py-2">한국형 스트레스 자가척도 (PSS)</td>
-                        <td class="border px-4 py-2">0-10</td>
-                        <td class="border px-4 py-2">스트레스가 별로 없습니다.</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2"></td>
-                        <td class="border px-4 py-2">11-20</td>
-                        <td class="border px-4 py-2">스트레스 정도가 심하지 않습니다.</td>
-                    </tr>
-                    <tr class="bg-gray-100">
-                        <td class="border px-4 py-2"></td>
-                        <td class="border px-4 py-2">21-30</td>
-                        <td class="border px-4 py-2">스트레스 정도가 심합니다.</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2"></td>
-                        <td class="border px-4 py-2">31-40</td>
-                        <td class="border px-4 py-2">스트레스 정도가 매우 심합니다.</td>
+                        <td class="border px-4 py-2">0-40</td>
+                        <td class="border px-4 py-2"> 40점 만점을 기준으로 본인의 지각된 스트레스 정도를 판단해요. 40점에 가까울 수록 자각하고 있는 스트레스 정도가 너무 심하다는 걸 의미해요.</td>
                     </tr>
                 </tbody>
             </table>

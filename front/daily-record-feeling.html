@@ -3,20 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Record the feeling today</title>
+    <title>EmoCal</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="diary.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
+      </style>
     <style>
       body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100vh;
+        height: 450px;
         margin: 0;
         padding: 20px;
-        font-family: "Arial", sans-serif;
+        font-family: "Castoro", sans-serif;
       }
       .container {
         text-align: center;
@@ -56,17 +62,23 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="title-container">
-        <h1 class="text-4xl font title" style="cursor: pointer;" onclick="location.href='main.html'">How was your day?</h1>
-    </div>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='main.html'">EmoCal</div>
+      <div class="menu-item" onclick="location.href='diary.html'">일기</div>
+      <div class="menu-item" onclick="location.href='month_feeling.html'">이달의 기분</div>
+      <div class="menu-item" onclick="location.href='community.html'">게시판</div>
+      <div class="right-menu" onclick="location.href='login.html'">로그인</div>
+      <div class="right-menu" onclick="location.href='test_alert.html'">검사 위험도 설정</div>
+      <div class="divider"></div>
+  </div>
+  <div class="container">
       <h1 class="text-xl font-bold mb-4">
         당신의 오늘 하루를 감정으로 표현하자면 어떤 감정인가요?
       </h1>
-      <div id="emotion-list">
+  <div id="emotion-list">
         <!-- 이모티콘 리스트 JavaScript로 동적으로 생성 -->
       </div>
-      <button onclick="submitEmotion()">저장</button>
+      <button onclick="submitEmotion()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">저장</button>
     </div>
 
     <script>
